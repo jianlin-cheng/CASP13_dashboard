@@ -1,0 +1,19 @@
+.row {
+    text-align: center;
+    }
+        
+.method_title {
+    background-color: skyblue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+        
+.method_box {
+    border: 3px dotted skyblue;
+    height: 300px;
+}
+        
+.comment_box {
+    border: 1px solid black;
+    height: 200px;
+}
