@@ -27,11 +27,21 @@ data.append("filepath" , filepath);
 var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
 xhr.open( 'post', 'http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php', true );
 xhr.send(data);
-
 //write a confirmation to the user
 document.getElementById(updateid).innerHTML="Edits saved!";
-
 }
+    
+    
+    $(document).ready(function() {
+       $("#title-menu").click(function() {
+           var target = String($(this).val());
+           $("#dropdown-description").html(target + '<span class="caret"></span>');
+            $.get("updateMethod.php", {method:target}, function(response){
+                console.log("This was the response " + response);
+                $("#viewButton1").html(response);
+                });
+            });
+    });
 </script>
 
 <?php
@@ -61,17 +71,29 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 
 	
 <body onload="checkEdits()">
-    <div class="container">
+        <div class="container">
         <div class="row">
-            <div class="col-xs-4">
-                <h1 class="method_title">CONFOLD</h1>
+            <form id="methodSelection">
+            <div class="dropdown">
+                <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">MULTICOM<span class="caret"></span></button>
+                <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1">
+							<?php
+                    
+							if ($handle = opendir('MULTICOM_Methods/')) {
+								$blacklist = array('.', '..','comments.txt');
+								while (false !== ($file = readdir($handle))) {
+									if (!in_array($file, $blacklist)) {
+										$file = rtrim($file);
+										echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
+									}
+								}
+								closedir($handle);
+							}
+							?>
+						
+                    </select >
             </div>
-            <div class="col-xs-4">
-                <h1 class="method_title">MULTICOM</h1>
-            </div>
-            <div class="col-xs-4">
-                <h1 class="method_title">DNCON2</h1>
-            </div>
+        </form>
         </div>
         <div class="row">
             <div class="col-xs-1">
@@ -81,21 +103,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                         <span class="caret"></span>
                     </button>
                 
-                    <select  class="dropdown-menu" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
-							<?php
-							
-							if ($handle = opendir('MULTICOM_Methods/confold2/')) {
-								$blacklist = array('.', '..','comments.txt');
-								while (false !== ($file = readdir($handle))) {
-									if (!in_array($file, $blacklist)) {
-										$file = rtrim($file);
-										echo "<option><button type=\"button\"  value=\"$file\">$file</button></option>\n";
-									}
-								}
-								closedir($handle);
-							}
-							?>
-						
+                    <select class="dropdown-menu" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
                     </select >
                 </div>
             </div>
@@ -106,9 +114,10 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 							//var append = "APPEND";
 							var append = "";
 							
+                            var methodName = document.getElementById("dropdown-description");
 							
 							Jmol.getApplet("jsmolAppletM1", Info);
-							Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/confold2/T01/model1.pdb;");
+							Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/"+ methodName + "/T01/model1.pdb;");
 							Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
 							
 							Jmol.jmolCheckbox(jsmolAppletM1,"","","Predicted Structure", true, "refinedCheck");
@@ -120,12 +129,12 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 									target = target.replace(/\n/g, '');
 									if ($("#refinedCheck").prop("checked")) {
 										Jmol.script(jsmolAppletM1, "zap file=" + rfile + ";");
-										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/confold2/"+target+"/model1.pdb;");	
+										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName + "/"+target+"/model1.pdb;");	
 										Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
 									}
 									else {
 										$("#refinedCheck").prop("checked", true);
-										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/confold2/"+target+"/model1.pdb;");	
+										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName + "/"+target+"/model1.pdb;");	
 										Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
 									}
 									append = "";
@@ -137,7 +146,6 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 								<?php } else if ($rwp) { ?> thID = 5;
 								<?php } else if ($molp) { ?> thID = 5;
 								<?php } else { ?> thID = 1; <?php } ?> 
-
 								var myTH = document.getElementsByTagName("th")[thID];
 								sorttable.innerSortFunction.apply(myTH, []);	
 							});
@@ -206,7 +214,6 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 								<?php } else if ($rwp) { ?> thID = 5;
 								<?php } else if ($molp) { ?> thID = 5;
 								<?php } else { ?> thID = 1; <?php } ?> 
-
 								var myTH = document.getElementsByTagName("th")[thID];
 								sorttable.innerSortFunction.apply(myTH, []);	
 							});
@@ -275,7 +282,6 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 								<?php } else if ($rwp) { ?> thID = 5;
 								<?php } else if ($molp) { ?> thID = 5;
 								<?php } else { ?> thID = 1; <?php } ?> 
-
 								var myTH = document.getElementsByTagName("th")[thID];
 								sorttable.innerSortFunction.apply(myTH, []);	
 							});
