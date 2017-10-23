@@ -151,11 +151,11 @@ $(document).ready(function() {
                     </select >
             </div>
         </form>
-			<?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?>
-				<div class="col-md-3">
+			<?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?> 
+				<div class="col-md-4">
 					<div class="dropdown">
 						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							#1
+							Please select the target
 							<span class="caret"></span>
 						</button>
 					
@@ -176,16 +176,16 @@ $(document).ready(function() {
 						</select >
 					</div>
 				</div>
-				<div class="col-md-4 method_box">
+				<div class="col-md-4 method_box" style="height: 400px; width: 400px;border: 0px solid black;">
 					<script type="text/javascript">
 								var model = 1;
 								var rfile = 1;
 								var append = "";
 								Jmol.getApplet("jsmolAppletM1", Info);
-								//Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/multicom/T01/model1.pdb;");
-								//Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
+								Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/multicom/T01/model1.pdb;");
+								Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
 								
-								//Jmol.jmolCheckbox(jsmolAppletM1,"","","Predicted Structure", true, "refinedCheck");
+								Jmol.jmolCheckbox(jsmolAppletM1,"","","Predicted Structure", true, "refinedCheck");
 								
 								$(document).ready(function() {
 									$("#viewButton1").click(function() {
@@ -225,7 +225,7 @@ $(document).ready(function() {
 				<div class="col-md-1">
 					<div class="dropdown">
 						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							#1
+							Please select the target (need 1~5 seconds to load)
 							<span class="caret"></span>
 						</button>
 					
@@ -246,7 +246,7 @@ $(document).ready(function() {
 						</select >
 					</div>
 				</div>
-				<div  style="height: 1000px; width: 1000px;border: 0px solid black;">
+				<div  style="height: 500px; width: 1200px;border: 0px solid black;">
 					<iframe id="dncon2_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
 				</div>
 			<?php  } ?>
