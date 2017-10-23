@@ -111,20 +111,18 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                 <script type="text/javascript">
 							var model = 1;
 							var rfile = 1;
-							//var append = "APPEND";
 							var append = "";
 							
-                            var methodName = document.getElementById("dropdown-description");
-							
 							Jmol.getApplet("jsmolAppletM1", Info);
-							Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/"+ methodName + "/T01/model1.pdb;");
+							Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/multicom/T01/model1.pdb;");
 							Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
 							
 							Jmol.jmolCheckbox(jsmolAppletM1,"","","Predicted Structure", true, "refinedCheck");
 							
 							$(document).ready(function() {
 								$("#viewButton1").click(function() {
-									//target = $(this).attr('value');
+                                    var methodName = $("#dropdown-description").text();
+                                    console.log("This is the method name " + methodName);
 									var target = String($(this).val());
 									target = target.replace(/\n/g, '');
 									if ($("#refinedCheck").prop("checked")) {
@@ -151,162 +149,14 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 							});
 						</script>
             </div>
-            <div class="col-xs-1">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        #2
-                        <span class="caret"></span>
-                    </button>
-                
-                    <select  class="dropdown-menu" id="viewButton2" multiple="multiple" aria-labelledby="dropdownMenu1">
-							<?php
-							
-							if ($handle = opendir('MULTICOM_Methods/multicom/')) {
-								$blacklist = array('.', '..','comments.txt');
-								while (false !== ($file = readdir($handle))) {
-									if (!in_array($file, $blacklist)) {
-										$file = rtrim($file);
-										echo "<option><button type=\"button\"  value=\"$file\">$file</button></option>\n";
-									}
-								}
-								closedir($handle);
-							}
-							?>
-						
-                    </select >
-                </div>
             </div>
-            <div class="col-xs-3 method_box">
-                <script type="text/javascript">
-							var model = 1;
-							var rfile = 1;
-							//var append = "APPEND";
-							var append = "";
-							
-							
-							Jmol.getApplet("jsmolAppletM2", Info);
-							Jmol.script(jsmolAppletM2,"background black; load MULTICOM_Methods/multicom/T01/model1.pdb;");
-							Jmol.script(jsmolAppletM2, "spin on; cartoon only; color {file="+ rfile+"} group;");
-							
-							Jmol.jmolCheckbox(jsmolAppletM2,"","","Predicted Structure", true, "refinedCheck");
-							
-							$(document).ready(function() {
-								$("#viewButton2").click(function() {
-									//target = $(this).attr('value');
-									var target = String($(this).val());
-									target = target.replace(/\n/g, '');
-									if ($("#refinedCheck").prop("checked")) {
-										Jmol.script(jsmolAppletM2, "zap file=" + rfile + ";");
-										Jmol.script(jsmolAppletM2,"background black; load MULTICOM_Methods/multicom/"+target+"/model1.pdb;");	
-										Jmol.script(jsmolAppletM2, "spin on; cartoon only; color {file="+ rfile+"} group;");
-									}
-									else {
-										$("#refinedCheck").prop("checked", true);
-										Jmol.script(jsmolAppletM2,"background black; load MULTICOM_Methods/multicom/"+target+"/model1.pdb;");	
-										Jmol.script(jsmolAppletM2, "spin on; cartoon only; color {file="+ rfile+"} group;");
-									}
-									append = "";
-									$("#modelTitle").html("Representative Conformation in Top 1 Fold");
-								});
-								//presort table
-								var thID = 0;
-								<?php if ($rwp && $molp) { ?> thID = 6;
-								<?php } else if ($rwp) { ?> thID = 5;
-								<?php } else if ($molp) { ?> thID = 5;
-								<?php } else { ?> thID = 1; <?php } ?> 
-								var myTH = document.getElementsByTagName("th")[thID];
-								sorttable.innerSortFunction.apply(myTH, []);	
-							});
-						</script>
-            </div>
-            <div class="col-xs-1">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        #3
-                        <span class="caret"></span>
-                    </button>
-                
-                    <select  class="dropdown-menu" id="viewButton3" multiple="multiple" aria-labelledby="dropdownMenu1">
-							<?php
-							
-							if ($handle = opendir('MULTICOM_Methods/dncon2/')) {
-								$blacklist = array('.', '..','comments.txt');
-								while (false !== ($file = readdir($handle))) {
-									if (!in_array($file, $blacklist)) {
-										$file = rtrim($file);
-										echo "<option><button type=\"button\"  value=\"$file\">$file</button></option>\n";
-									}
-								}
-								closedir($handle);
-							}
-							?>
-						
-                    </select >
-                </div>
-            </div>
-            <div class="col-xs-3 method_box">
-                <script type="text/javascript">
-							var model = 1;
-							var rfile = 1;
-							//var append = "APPEND";
-							var append = "";
-							
-							
-							Jmol.getApplet("jsmolAppletM3", Info);
-							Jmol.script(jsmolAppletM3,"background black; load MULTICOM_Methods/dncon2/T01/model1.pdb;");
-							Jmol.script(jsmolAppletM3, "spin on; cartoon only; color {file="+ rfile+"} group;");
-							
-							Jmol.jmolCheckbox(jsmolAppletM3,"","","Predicted Structure", true, "refinedCheck");
-							
-							$(document).ready(function() {
-								$("#viewButton3").click(function() {
-									//target = $(this).attr('value');
-									var target = String($(this).val());
-									target = target.replace(/\n/g, '');
-									if ($("#refinedCheck").prop("checked")) {
-										Jmol.script(jsmolAppletM3, "zap file=" + rfile + ";");
-										Jmol.script(jsmolAppletM3,"background black; load MULTICOM_Methods/dncon2/"+target+"/model1.pdb;");	
-										Jmol.script(jsmolAppletM3, "spin on; cartoon only; color {file="+ rfile+"} group;");
-									}
-									else {
-										$("#refinedCheck").prop("checked", true);
-										Jmol.script(jsmolAppletM3,"background black; load MULTICOM_Methods/dncon2/"+target+"/model1.pdb;");	
-										Jmol.script(jsmolAppletM3, "spin on; cartoon only; color {file="+ rfile+"} group;");
-									}
-									append = "";
-									$("#modelTitle").html("Representative Conformation in Top 1 Fold");
-								});
-								//presort table
-								var thID = 0;
-								<?php if ($rwp && $molp) { ?> thID = 6;
-								<?php } else if ($rwp) { ?> thID = 5;
-								<?php } else if ($molp) { ?> thID = 5;
-								<?php } else { ?> thID = 1; <?php } ?> 
-								var myTH = document.getElementsByTagName("th")[thID];
-								sorttable.innerSortFunction.apply(myTH, []);	
-							});
-						</script>
-            </div>
-        </div>
         <div class="row">
-            <div  class="col-xs-4">
-                <h2 class="comment_box">CONFOLD Comment</h2>
-				<textarea  id="edit_comment1" rows="4" cols="50">  <?php echo trim(file_get_contents('./MULTICOM_Methods/confold2/comments.txt', true));?> </textarea><br>
-				<input type="button" value="save my comments" onclick="saveEdits('edit_comment1','update1','./MULTICOM_Methods/confold2/comments.txt')"/>
-				<div id="update1"> - Edit the text and click to save for next time</div>
-            </div>
             <div  class="col-xs-4">
                 <h2 class="comment_box">MULTICOM Comment</h2>
 				<textarea  id="edit_comment2" rows="4" cols="50">  <?php echo trim(file_get_contents('./MULTICOM_Methods/multicom/comments.txt', true));?> </textarea><br>
 				<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
 				<div id="update2"> - Edit the text and click to save for next time</div>
-            </div>
-            <div  class="col-xs-4">
-                <h2 class="comment_box">DNCON2 Comment</h2>
-				<textarea  id="edit_comment3" rows="4" cols="50">  <?php echo trim(file_get_contents('./MULTICOM_Methods/dncon2/comments.txt', true));?> </textarea><br>
-				<input type="button" value="save my comments" onclick="saveEdits('edit_comment3','update3','./MULTICOM_Methods/dncon2/comments.txt')"/>
-				<div id="update3"> - Edit the text and click to save for next time</div>
-            </div>
+            </div> 
         </div>
     </div>
 </body>
