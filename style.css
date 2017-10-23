@@ -10,10 +10,21 @@
         
 .method_box {
     border: 3px dotted skyblue;
-    height: 300px;
+    height: auto;
+    width: auto;
+    max-width: 550px;
 }
         
 .comment_box {
     border: 1px solid black;
-    height: 60px;
+    height: auto;
+    max-width: 500px;
+}
+
+#jsmolAppletM1_appletinfotablediv {
+    margin: 10px;
+}
+
+.dropdown-toggle {
+    margin: 5px;
 }

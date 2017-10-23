@@ -35,11 +35,12 @@ document.getElementById(updateid).innerHTML="Edits saved!";
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
-           $("#dropdown-description").html(target + '<span class="caret"></span>');
+           $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
             $.get("updateMethod.php", {method:target}, function(response){
                 console.log("This was the response " + response);
                 $("#viewButton1").html(response);
                 });
+           $(".comment_box").html(target.toUpperCase() + " Comment Box");
             });
     });
 </script>
@@ -74,7 +75,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
         <div class="container">
         <div class="row">
             <form id="methodSelection">
-            <div class="dropdown">
+            <div class="dropdown col-md-2">
                 <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">MULTICOM<span class="caret"></span></button>
                 <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1">
 							<?php
@@ -94,9 +95,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                     </select >
             </div>
         </form>
-        </div>
-        <div class="row">
-            <div class="col-xs-1">
+            <div class="col-md-1">
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         #1
@@ -120,7 +119,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                     </select >
                 </div>
             </div>
-            <div class="col-xs-3 method_box">
+            <div class="col-md-4 method_box">
                 <script type="text/javascript">
 							var model = 1;
 							var rfile = 1;
@@ -140,12 +139,12 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 									target = target.replace(/\n/g, '');
 									if ($("#refinedCheck").prop("checked")) {
 										Jmol.script(jsmolAppletM1, "zap file=" + rfile + ";");
-										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName + "/"+target+"/model1.pdb;");	
+										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+"/model1.pdb;");	
 										Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
 									}
 									else {
 										$("#refinedCheck").prop("checked", true);
-										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName + "/"+target+"/model1.pdb;");	
+										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target +"/model1.pdb;");	
 										Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
 									}
 									append = "";
@@ -162,10 +161,10 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 							});
 						</script>
             </div>
-            </div>
+        </div>
         <div class="row">
-            <div  class="col-xs-4">
-                <h2 class="comment_box">MULTICOM Comment</h2>
+            <div  class="col-md-4">
+                <h2 class="comment_box">MULTICOM Comment Box</h2>
 				<textarea  id="edit_comment2" rows="4" cols="50">  <?php echo trim(file_get_contents('./MULTICOM_Methods/multicom/comments.txt', true));?> </textarea><br>
 				<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
 				<div id="update2"> - Edit the text and click to save for next time</div>
