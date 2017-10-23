@@ -104,6 +104,19 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                     </button>
                 
                     <select class="dropdown-menu" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
+                        <?php
+                    
+							if ($handle = opendir('MULTICOM_Methods/multicom')) {
+								$blacklist = array('.', '..','comments.txt');
+								while (false !== ($file = readdir($handle))) {
+									if (!in_array($file, $blacklist)) {
+										$file = rtrim($file);
+										echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
+									}
+								}
+								closedir($handle);
+							}
+							?>
                     </select >
                 </div>
             </div>
