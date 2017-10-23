@@ -74,6 +74,30 @@ document.getElementById(updateid).innerHTML="Edits saved!";
            location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
             });
     });
+	
+    $(document).ready(function() {
+       $("#dncon2_run").click(function() {
+           var target = String($(this).val());
+		   var array_tmp = target.split('.');
+		   var targetname=array_tmp[0]
+		   //alert(target);
+		   //alert(targetname);
+		   //alert("http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname);
+           document.getElementById('dncon2_iframe').src = "http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname;
+           document.getElementById('dncon2_iframe').width = "100%";
+           document.getElementById('dncon2_iframe').height = "100%";
+            });
+    });
+	
+$(document).ready(function() {
+    var opt = $("#dncon2_run option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+    $("#dncon2_run").append(opt);
+});
+
+$(document).ready(function() {
+    var opt = $("#viewButton1 option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+    $("#viewButton1").append(opt);
+});
 
 </script>
 
@@ -127,72 +151,107 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                     </select >
             </div>
         </form>
-            <div class="col-md-1">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        #1
-                        <span class="caret"></span>
-                    </button>
-                
-                    <select class="dropdown-menu" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
-                        <?php
-                            
-							if ($handle = opendir("MULTICOM_Methods/$method_id")) {
-								$blacklist = array('.', '..','comments.txt');
-								while (false !== ($file = readdir($handle))) {
-									if (!in_array($file, $blacklist)) {
-										$file = rtrim($file);
-										echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
+			<?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?>
+				<div class="col-md-3">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							#1
+							<span class="caret"></span>
+						</button>
+					
+						<select class="dropdown-menu" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
+							<?php
+								
+								if ($handle = opendir("MULTICOM_Methods/$method_id")) {
+									$blacklist = array('.', '..','comments.txt');
+									while (false !== ($file = readdir($handle))) {
+										if (!in_array($file, $blacklist) and strpos($file, '.pdb') !== false) {
+											$file = rtrim($file);
+											echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
+										}
 									}
+									closedir($handle);
 								}
-								closedir($handle);
-							}
-							?>
-                    </select >
-                </div>
-            </div>
-            <div class="col-md-4 method_box">
-                <script type="text/javascript">
-							var model = 1;
-							var rfile = 1;
-							var append = "";
-							
-							Jmol.getApplet("jsmolAppletM1", Info);
-							Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/multicom/T01/model1.pdb;");
-							Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
-							
-							Jmol.jmolCheckbox(jsmolAppletM1,"","","Predicted Structure", true, "refinedCheck");
-							
-							$(document).ready(function() {
-								$("#viewButton1").click(function() {
-                                    var methodName = $("#dropdown-description").text();
-                                    console.log("This is the method name " + methodName);
-									var target = String($(this).val());
-									target = target.replace(/\n/g, '');
-									if ($("#refinedCheck").prop("checked")) {
-										Jmol.script(jsmolAppletM1, "zap file=" + rfile + ";");
-										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+"/model1.pdb;");	
-										Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
-									}
-									else {
-										$("#refinedCheck").prop("checked", true);
-										Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target +"/model1.pdb;");	
-										Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
-									}
-									append = "";
-									$("#modelTitle").html("Representative Conformation in Top 1 Fold");
+								?>
+						</select >
+					</div>
+				</div>
+				<div class="col-md-4 method_box">
+					<script type="text/javascript">
+								var model = 1;
+								var rfile = 1;
+								var append = "";
+								Jmol.getApplet("jsmolAppletM1", Info);
+								//Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/multicom/T01/model1.pdb;");
+								//Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
+								
+								//Jmol.jmolCheckbox(jsmolAppletM1,"","","Predicted Structure", true, "refinedCheck");
+								
+								$(document).ready(function() {
+									$("#viewButton1").click(function() {
+										var methodName = $("#dropdown-description").text();
+										console.log("This is the method name " + methodName);
+										var target = String($(this).val());
+										target = target.replace(/\n/g, '');
+										if ($("#refinedCheck").prop("checked")) {
+											Jmol.script(jsmolAppletM1, "zap file=" + rfile + ";");
+											//Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+"/model1.pdb;");	
+											Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+";");		
+											Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
+										}
+										else {
+											$("#refinedCheck").prop("checked", true);
+											//Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target +"/model1.pdb;");	
+											Jmol.script(jsmolAppletM1,"background black; load MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+";");		
+											Jmol.script(jsmolAppletM1, "spin on; cartoon only; color {file="+ rfile+"} group;");
+										}
+										append = "";
+										$("#modelTitle").html("Representative Conformation in Top 1 Fold");
+									});
+									//presort table
+									var thID = 0;
+									<?php if ($rwp && $molp) { ?> thID = 6;
+									<?php } else if ($rwp) { ?> thID = 5;
+									<?php } else if ($molp) { ?> thID = 5;
+									<?php } else { ?> thID = 1; <?php } ?> 
+									var myTH = document.getElementsByTagName("th")[thID];
+									sorttable.innerSortFunction.apply(myTH, []);	
 								});
-								//presort table
-								var thID = 0;
-								<?php if ($rwp && $molp) { ?> thID = 6;
-								<?php } else if ($rwp) { ?> thID = 5;
-								<?php } else if ($molp) { ?> thID = 5;
-								<?php } else { ?> thID = 1; <?php } ?> 
-								var myTH = document.getElementsByTagName("th")[thID];
-								sorttable.innerSortFunction.apply(myTH, []);	
-							});
-						</script>
-            </div>
+							</script>
+				</div>
+			<?php  } ?>
+			
+			<?php if($method_id == 'dncon2'){ ?>
+				<div class="col-md-1">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							#1
+							<span class="caret"></span>
+						</button>
+					
+						<select class="dropdown-menu" id="dncon2_run" multiple="multiple" aria-labelledby="dropdownMenu1">
+							<?php
+								
+								if ($handle = opendir("MULTICOM_Methods/$method_id")) {
+									$blacklist = array('.', '..','comments.txt');
+									while (false !== ($file = readdir($handle))) {
+										if (!in_array($file, $blacklist) and strpos($file, '.rr') !== false) {
+											$file = rtrim($file);
+											echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
+										}
+									}
+									closedir($handle);
+								}
+								?>
+						</select >
+					</div>
+				</div>
+				<div  style="height: 1000px; width: 1000px;border: 0px solid black;">
+					<iframe id="dncon2_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
+				</div>
+			<?php  } ?>
+			
+			
         </div>
         <div class="row">
             <div  class="col-md-4">
