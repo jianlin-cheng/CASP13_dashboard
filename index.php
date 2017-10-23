@@ -1,3 +1,20 @@
+<?php
+$method_id = $_REQUEST["method"];
+
+if($method_id == 'dncon2')
+{
+	$method_id='dncon2';
+}else if($method_id == 'confold2')
+{
+	$method_id='confold2';
+}else{
+	
+	$method_id='multicom';
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +48,7 @@ xhr.send(data);
 document.getElementById(updateid).innerHTML="Edits saved!";
 }
     
-    
+/*    
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -41,8 +58,23 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                 $("#viewButton1").html(response);
                 });
            $(".comment_box").html(target.toUpperCase() + " Comment Box");
+           $(".comment_content").html( "\<\?php echo trim(file_get_contents(\'./MULTICOM_Methods/"+target+"/comments.txt\', true));?>");
             });
     });
+*/
+    $(document).ready(function() {
+       $("#title-menu").click(function() {
+           var target = String($(this).val());
+           $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
+            $.get("updateMethod.php", {method:target}, function(response){
+                console.log("This was the response " + response);
+                $("#viewButton1").html(response);
+                });
+           $(".comment_box").html(target.toUpperCase() + " Comment Box");
+           location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
+            });
+    });
+
 </script>
 
 <?php
@@ -76,7 +108,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
         <div class="row">
             <form id="methodSelection">
             <div class="dropdown col-md-2">
-                <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">MULTICOM<span class="caret"></span></button>
+                <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $method_id?><span class="caret"></span></button>
                 <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1">
 							<?php
                     
@@ -104,8 +136,8 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                 
                     <select class="dropdown-menu" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
                         <?php
-                    
-							if ($handle = opendir('MULTICOM_Methods/multicom')) {
+                            
+							if ($handle = opendir("MULTICOM_Methods/$method_id")) {
 								$blacklist = array('.', '..','comments.txt');
 								while (false !== ($file = readdir($handle))) {
 									if (!in_array($file, $blacklist)) {
@@ -164,10 +196,23 @@ document.getElementById(updateid).innerHTML="Edits saved!";
         </div>
         <div class="row">
             <div  class="col-md-4">
-                <h2 class="comment_box">MULTICOM Comment Box</h2>
-				<textarea  id="edit_comment2" rows="4" cols="50">  <?php echo trim(file_get_contents('./MULTICOM_Methods/multicom/comments.txt', true));?> </textarea><br>
-				<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
-				<div id="update2"> - Edit the text and click to save for next time</div>
+                <h2 class="comment_box"><?php echo $method_id?> Comment Box</h2>
+				
+				<?php if ($method_id == 'multicom'){ ?>
+					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
+					<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
+					<div id="update2"> - Edit the text and click to save for next time</div>
+				<?php }else if($method_id == 'dncon2'){ ?>
+					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
+					<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/dncon2/comments.txt')"/>
+					<div id="update2"> - Edit the text and click to save for next time</div>
+				<?php }else if($method_id == 'confold2'){?>
+					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
+					<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/confold2/comments.txt')"/>
+					<div id="update2"> - Edit the text and click to save for next time</div>
+				<?php }else{?>
+					<textarea  rows="4" cols="50">  <?php echo "No comments for this method";?> </textarea><br>
+				<?php }?>
             </div> 
         </div>
     </div>
