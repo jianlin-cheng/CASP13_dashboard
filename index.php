@@ -30,7 +30,7 @@ if($method_id == 'dncon2')
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style/style.css">
 </head>
 
 
@@ -48,7 +48,7 @@ xhr.send(data);
 document.getElementById(updateid).innerHTML="Edits saved!";
 }
     
-/*    
+   
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -57,11 +57,12 @@ document.getElementById(updateid).innerHTML="Edits saved!";
                 console.log("This was the response " + response);
                 $("#viewButton1").html(response);
                 });
-           $(".comment_box").html(target.toUpperCase() + " Comment Box");
+           $(".comment_box").html(target.toUpperCase());
            $(".comment_content").html( "\<\?php echo trim(file_get_contents(\'./MULTICOM_Methods/"+target+"/comments.txt\', true));?>");
             });
     });
-*/
+
+    /*
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -74,6 +75,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
            location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
             });
     });
+    */
 	
     $(document).ready(function() {
        $("#dncon2_run").click(function() {
@@ -128,11 +130,14 @@ $(document).ready(function() {
 
 	
 <body onload="checkEdits()">
+    <div id="header">
+        <h1 id="title">CASP13</h1>
+        <h2 id="subtitle">Critical Assesment of Techniques for Protein Structure Prediction</h2>
+    </div>
         <div class="container">
         <div class="row">
-            <form id="methodSelection">
-            <div class="dropdown col-md-2">
-                <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $method_id?><span class="caret"></span></button>
+            <div class="dropdown col-md-2 text-left">
+                <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
                 <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1">
 							<?php
                     
@@ -150,19 +155,16 @@ $(document).ready(function() {
 						
                     </select >
             </div>
-        </form>
 			<?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?> 
-				<div class="col-md-4">
-					<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				<div class="dropdown col-md-2 text-left">
+				    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							Please select the target
 							<span class="caret"></span>
 						</button>
 					
-						<select class="dropdown-menu" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
-							<?php
-								
-								if ($handle = opendir("MULTICOM_Methods/$method_id")) {
+				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1">
+				        <?php
+				            if ($handle = opendir("MULTICOM_Methods/$method_id")) {
 									$blacklist = array('.', '..','comments.txt');
 									while (false !== ($file = readdir($handle))) {
 										if (!in_array($file, $blacklist) and strpos($file, '.pdb') !== false) {
@@ -172,10 +174,9 @@ $(document).ready(function() {
 									}
 									closedir($handle);
 								}
-								?>
-						</select >
+				    ?>
+						</select>
 					</div>
-				</div>
 				<div class="col-md-4 method_box" style="height: 400px; width: 400px;border: 0px solid black;">
 					<script type="text/javascript">
 								var model = 1;
@@ -255,7 +256,7 @@ $(document).ready(function() {
         </div>
         <div class="row">
             <div  class="col-md-4">
-                <h2 class="comment_box"><?php echo $method_id?> Comment Box</h2>
+                <h2 class="comment_box"><?php echo $method_id ?> Comment Box</h2>
 				
 				<?php if ($method_id == 'multicom'){ ?>
 					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
