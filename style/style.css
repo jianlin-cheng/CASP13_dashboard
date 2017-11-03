@@ -3,46 +3,14 @@
     src: url('Quantify_Bold.ttf') format('truetype');
 }
 
-.row {
-    text-align: center;
-    }
-        
-.method_title {
-    background-color: skyblue;
-    padding-top: 5px;
-    padding-bottom: 5px;
+body {
+    background-color: #a8bec5;
 }
-        
-.method_box {
-    height: auto;
-    width: auto;
-    max-width: 550px;
-    z-index: 0;
-}
- 
+
 .comment_box {
     border: 1px solid black;
     height: auto;
     max-width: 500px;
-}
-
-#jsmolAppletM1_appletinfotablediv {
-    margin: 10px;
-}
-
-.dropdown-toggle {
-    margin: 5px;
-}
-
-#header {
-    background-image: url("header-background.jpg");
-    margin: 0px;
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-body {
-    background-color: #a8bec5;
 }
 
 #dropdown-description {
@@ -50,28 +18,8 @@ body {
     border-color: #3f728c;
 }
 
-#title {
-    margin-left: 30px;
-    font-family: 'Quantify';
-    display: inline;
-}
-
-#subtitle {
-    font-size: 20px;
-    display: inline;
-    padding-left: 10px;
-}
-
-.visualization-container {
-    height: 400px;
-}
-.update-box {
-    float: left;
-    border: 1px black solid;
-    padding: 30px;
-    height: auto;
-    margin-top: 30px;
-    background-color: white;
+.dropdown-toggle {
+    margin: 5px;
 }
 
 .functions {
@@ -84,4 +32,57 @@ body {
 .functions>.btn {
     display: block;
     margin: 10px;
+}
+
+#header {
+    background-image: url("header-background.jpg");
+    margin: 0px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+#jsmolAppletM1_appletinfotablediv {
+    margin: 10px;
+}
+     
+.method_box {
+    height: auto;
+    width: auto;
+    max-width: 550px;
+    z-index: 0;
+}
+        
+.method_title {
+    background-color: skyblue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.row {
+    text-align: center;
+}
+
+#subtitle {
+    font-size: 20px;
+    display: inline;
+    padding-left: 10px;
+}
+
+#title {
+    margin-left: 30px;
+    font-family: 'Quantify';
+    display: inline;
+}
+
+.update-box {
+    float: left;
+    border: 1px black solid;
+    padding: 30px;
+    height: auto;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.visualization-container {
+    height: 400px;
 }

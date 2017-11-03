@@ -33,20 +33,20 @@ if($method_id == 'dncon2')
 
 
 <script type="text/javascript">
-function saveEdits(formid,updateid, filepath) {
-//get the editable element
-var editElem = document.getElementById(formid).value;
-var data = new FormData();
-data.append("data" , editElem);
-data.append("filepath" , filepath);
-var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-xhr.open( 'post', 'http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php', true );
-xhr.send(data);
-//write a confirmation to the user
-document.getElementById(updateid).innerHTML="Edits saved!";
-}
+    function saveEdits(formid,updateid, filepath) {
+        //get the editable element
+        var editElem = document.getElementById(formid).value;
+        var data = new FormData();
+        data.append("data" , editElem);
+        data.append("filepath" , filepath);
+        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+        xhr.open( 'post', 'http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php', true );
+        xhr.send(data);
+        //write a confirmation to the user
+        document.getElementById(updateid).innerHTML="Edits saved!";
+    }
 
-/*    
+  /*
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -62,7 +62,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
             });
     });
 */
-    
+
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -78,7 +78,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
            location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
             });
     });
-//    
+    
 	
     $(document).ready(function() {
        $("#dncon2_run").click(function() {
@@ -93,16 +93,17 @@ document.getElementById(updateid).innerHTML="Edits saved!";
            document.getElementById('dncon2_iframe').height = "100%";
             });
     });
-	
-$(document).ready(function() {
-    var opt = $("#dncon2_run option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
-    $("#dncon2_run").append(opt);
-});
 
-$(document).ready(function() {
-    var opt = $("#viewButton1 option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
-    $("#viewButton1").append(opt);
-});
+    
+    $(document).ready(function() {
+        var opt = $("#dncon2_run option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+        $("#dncon2_run").append(opt);
+    });
+
+    $(document).ready(function() {
+        var opt = $("#viewButton1 option").sort(function (a,b) { return     a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+        $("#viewButton1").append(opt);
+    });
 
 </script>
 
@@ -134,12 +135,12 @@ $(document).ready(function() {
         <h1 id="title">CASP13</h1>
         <h2 id="subtitle">Critical Assesment of Techniques for Protein Structure Prediction</h2>
     </div>
-        <div class="container">
+    <div class="container">
         <div class="visualization-container">
-        <div class="col-md-6">
-            <div class="dropdown col-md-3 text-left">
-                <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
-                <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1" size=3>
+            <div class="col-md-6">
+                <div class="dropdown col-md-3 text-left">
+                    <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
+                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1" size=3>
 							<?php
                     
 							if ($handle = opendir('MULTICOM_Methods/')) {
@@ -155,13 +156,13 @@ $(document).ready(function() {
 							?>
 						
                     </select >
-            </div>
-			<?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?> 
+                </div>
+			     <?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?> 
 				<div class="dropdown col-md-2 text-left">
 				    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							Please select the target
 							<span class="caret"></span>
-						</button>
+				    </button>
 					
 				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1" size=9>
 				        <?php
@@ -175,12 +176,12 @@ $(document).ready(function() {
 									}
 									closedir($handle);
 								}
-				    ?>
-						</select>
-					</div>
-            <div class="row" id="visualization">
-				<div class="col-md-4 method_box">
-					<script type="text/javascript">
+				        ?>
+				    </select>
+				</div>
+                <div class="row" id="visualization">
+				    <div class="col-md-4 method_box">
+					   <script type="text/javascript">
 								var model = 1;
 								var rfile = 1;
 								var append = "";
@@ -219,11 +220,11 @@ $(document).ready(function() {
 									var myTH = document.getElementsByTagName("th")[thID];
 									sorttable.innerSortFunction.apply(myTH, []);	
 								});
-							</script>
-				</div>
-			<?php  } ?>
+				        </script>
+				    </div>
+			     <?php  } ?>
 			
-			<?php if($method_id == 'dncon2'){ ?>
+            <?php if($method_id == 'dncon2'){ ?>
 				<div class="col-md-1">
 					<div class="dropdown">
 						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -251,9 +252,9 @@ $(document).ready(function() {
 				<div  style="height: 500px; width: 1200px;border: 0px solid black;">
 					<iframe id="dncon2_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
 				</div>
-			<?php  } ?>
-        </div>
-        </div>
+			     <?php  } ?>
+                </div>
+            </div> <!-- end of cold-md-6 -->
             
             <div class="update-box">
                 <h1>Box for updates</h1>
@@ -262,12 +263,14 @@ $(document).ready(function() {
                 <button class="btn btn-default">Function 1</button>    
                 <button class="btn btn-default">Function 2</button>    
             </div>
-        </div>
+        </div> <!-- end of visualiation containter -->
+        
         <div class="row comments">
             <div class=" col-md-5">
                 <h2><?php echo $method_id ?></h2>
             </div>
         </div>
+        
         <div class="row comments col-md-5">
             <?php if ($method_id == 'multicom'){ ?>
 					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
