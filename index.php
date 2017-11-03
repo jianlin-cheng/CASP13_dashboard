@@ -7,11 +7,16 @@ if($method_id == 'dncon2')
 }else if($method_id == 'confold2')
 {
 	$method_id='confold2';
+}else if($method_id == 'deepsf')
+{
+	$method_id='deepsf';
 }else{
 	
 	$method_id='multicom';
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -33,36 +38,20 @@ if($method_id == 'dncon2')
 
 
 <script type="text/javascript">
-    function saveEdits(formid,updateid, filepath) {
-        //get the editable element
-        var editElem = document.getElementById(formid).value;
-        var data = new FormData();
-        data.append("data" , editElem);
-        data.append("filepath" , filepath);
-        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-        xhr.open( 'post', 'http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php', true );
-        xhr.send(data);
-        //write a confirmation to the user
-        document.getElementById(updateid).innerHTML="Edits saved!";
-    }
-
-  /*
-    $(document).ready(function() {
-       $("#title-menu").click(function() {
-           var target = String($(this).val());
-           $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
-            $.get("updateMethod.php", {method:target}, function(response){
-                $("#viewButton1").html(response);
-                var count = response.split('>').pop().trim();
-                console.log(count);
-                $('#viewButton1').attr("size", count);
-                });
-           $(".comment_box").html(target.toUpperCase());
-           $(".comment_content").html( "\<\?php echo trim(file_get_contents(\'./MULTICOM_Methods/"+target+"/comments.txt\', true));?>");
-            });
-    });
-*/
-
+function saveEdits(formid,updateid, filepath) {
+//get the editable element
+var editElem = document.getElementById(formid).value;
+var data = new FormData();
+data.append("data" , editElem);
+data.append("filepath" , filepath);
+var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+xhr.open( 'post', 'http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php', true );
+xhr.send(data);
+//write a confirmation to the user
+document.getElementById(updateid).innerHTML="Edits saved!";
+}
+    
+/*    
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -70,21 +59,30 @@ if($method_id == 'dncon2')
             $.get("updateMethod.php", {method:target}, function(response){
                 console.log("This was the response " + response);
                 $("#viewButton1").html(response);
-                var count = response.split('>').pop().trim();
-                console.log(count);
-                $('#viewButton1').attr("size", count);
                 });
-           $(".comment_box").html(target.toUpperCase());
+           $(".comment_box").html(target.toUpperCase() + " Comment Box");
+           $(".comment_content").html( "\<\?php echo trim(file_get_contents(\'./MULTICOM_Methods/"+target+"/comments.txt\', true));?>");
+            });
+    });
+*/
+    $(document).ready(function() {
+       $("#title-menu").click(function() {
+           var target = String($(this).val());
+           $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
+            $.get("updateMethod.php", {method:target}, function(response){
+                console.log("This was the response " + response);
+                $("#viewButton1").html(response);
+                });
+           $(".comment_box").html(target.toUpperCase() + " Comment Box");
            location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
             });
     });
-    
 	
     $(document).ready(function() {
        $("#dncon2_run").click(function() {
            var target = String($(this).val());
 		   var array_tmp = target.split('.');
-		   var targetname=array_tmp[0]
+		   var targetname=array_tmp[0];
 		   //alert(target);
 		   //alert(targetname);
 		   //alert("http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname);
@@ -93,17 +91,37 @@ if($method_id == 'dncon2')
            document.getElementById('dncon2_iframe').height = "100%";
             });
     });
-
-    
+	
     $(document).ready(function() {
-        var opt = $("#dncon2_run option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
-        $("#dncon2_run").append(opt);
+       $("#deepsf_run").click(function() {
+           var target = String($(this).val());
+		   var array_tmp = target.split('@');
+		   var targetname=array_tmp[0];
+		   var deepsf_id=array_tmp[1];
+		   
+  
+		   //alert(target);
+		   //alert(targetname);
+		   //alert("http://iris.rnet.missouri.edu/DeepSF/status.php?job_id="+deepsf_id+"&job_name="+targetname+"&protein_id="+targetname);
+           document.getElementById('deepsf_iframe').src = "http://iris.rnet.missouri.edu/DeepSF/status.php?job_id="+deepsf_id+"&job_name="+targetname+"&protein_id="+targetname;
+           document.getElementById('deepsf_iframe').width = "100%";
+           document.getElementById('deepsf_iframe').height = "100%";
+            });
     });
+	
+$(document).ready(function() {
+    var opt = $("#dncon2_run option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+    $("#dncon2_run").append(opt);
+});
+$(document).ready(function() {
+    var opt = $("#deepsf_run option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+    $("#deepsf_run").append(opt);
+});
 
-    $(document).ready(function() {
-        var opt = $("#viewButton1 option").sort(function (a,b) { return     a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
-        $("#viewButton1").append(opt);
-    });
+$(document).ready(function() {
+    var opt = $("#viewButton1 option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+    $("#viewButton1").append(opt);
+});
 
 </script>
 
@@ -129,18 +147,22 @@ if($method_id == 'dncon2')
 		j2sPath: "js/j2s"
 	}
 </script>
+		
+	
 
+	
 <body onload="checkEdits()">
     <div id="header">
         <h1 id="title">CASP13</h1>
-        <h2 id="subtitle">Critical Assesment of Techniques for Protein Structure Prediction</h2>
+        <!--<h2 id="subtitle">Critical Assesment of Techniques for Protein Structure Prediction</h2>-->
+        <h2 id="subtitle">Central Web Portal of MULTICOM Predictors</h2>
     </div>
     <div class="container">
         <div class="visualization-container">
             <div class="col-md-6">
                 <div class="dropdown col-md-3 text-left">
                     <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
-                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1" size=3>
+                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1" size=10>
 							<?php
                     
 							if ($handle = opendir('MULTICOM_Methods/')) {
@@ -148,6 +170,7 @@ if($method_id == 'dncon2')
 								while (false !== ($file = readdir($handle))) {
 									if (!in_array($file, $blacklist)) {
 										$file = rtrim($file);
+										$file_upper=strtoupper($file);
 										echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
 									}
 								}
@@ -156,17 +179,18 @@ if($method_id == 'dncon2')
 							?>
 						
                     </select >
-                </div>
-			     <?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?> 
+				</div>
+			<?php if($method_id == 'multicom' or $method_id == 'confold2'){ ?> 
 				<div class="dropdown col-md-2 text-left">
 				    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							Please select the target
 							<span class="caret"></span>
 				    </button>
 					
-				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1" size=9>
-				        <?php
-				            if ($handle = opendir("MULTICOM_Methods/$method_id")) {
+				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1" size=20>
+							<?php
+								
+								if ($handle = opendir("MULTICOM_Methods/$method_id")) {
 									$blacklist = array('.', '..','comments.txt');
 									while (false !== ($file = readdir($handle))) {
 										if (!in_array($file, $blacklist) and strpos($file, '.pdb') !== false) {
@@ -176,7 +200,7 @@ if($method_id == 'dncon2')
 									}
 									closedir($handle);
 								}
-				        ?>
+								?>
 				    </select>
 				</div>
                 <div class="row" id="visualization">
@@ -194,6 +218,7 @@ if($method_id == 'dncon2')
 								$(document).ready(function() {
 									$("#viewButton1").click(function() {
 										var methodName = $("#dropdown-description").text();
+										console.log("This is the method name " + methodName);
 										var target = String($(this).val());
 										target = target.replace(/\n/g, '');
 										if ($("#refinedCheck").prop("checked")) {
@@ -220,11 +245,11 @@ if($method_id == 'dncon2')
 									var myTH = document.getElementsByTagName("th")[thID];
 									sorttable.innerSortFunction.apply(myTH, []);	
 								});
-				        </script>
-				    </div>
-			     <?php  } ?>
+							</script>
+					</div>
+			<?php  } ?>
 			
-            <?php if($method_id == 'dncon2'){ ?>
+			<?php if($method_id == 'dncon2'){ ?>
 				<div class="col-md-1">
 					<div class="dropdown">
 						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -232,13 +257,43 @@ if($method_id == 'dncon2')
 							<span class="caret"></span>
 						</button>
 					
-						<select class="dropdown-menu" id="dncon2_run" multiple="multiple" aria-labelledby="dropdownMenu1">
+						<select class="dropdown-menu" id="dncon2_run" multiple="multiple" aria-labelledby="dropdownMenu1" size=20>
 							<?php
 								
 								if ($handle = opendir("MULTICOM_Methods/$method_id")) {
 									$blacklist = array('.', '..','comments.txt');
 									while (false !== ($file = readdir($handle))) {
-										if (!in_array($file, $blacklist) and strpos($file, '.rr') !== false) {
+										if (!in_array($file, $blacklist) and strpos($file, '.rr') !== false and strpos($file, '_full') !== false) {
+											$file = rtrim($file);
+											echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
+										}
+									}
+									closedir($handle);
+								}
+								?>
+						</select >
+					</div>
+				</div>
+				<div  style="height: 500px; width: 1200px;border: 0px solid black; " >
+					<iframe id="dncon2_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
+				</div>
+			<?php  } ?>
+			
+			<?php if($method_id == 'deepsf'){ ?>
+				<div class="col-md-1">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Please select the target (need 1~5 seconds to load)
+							<span class="caret"></span>
+						</button>
+					
+						<select class="dropdown-menu" id="deepsf_run" multiple="multiple" aria-labelledby="dropdownMenu1" size=20>
+							<?php
+								
+								if ($handle = opendir("MULTICOM_Methods/$method_id")) {
+									$blacklist = array('.', '..','comments.txt');
+									while (false !== ($file = readdir($handle))) {
+										if (!in_array($file, $blacklist) and strpos($file, '@') !== false) {
 											$file = rtrim($file);
 											echo "<option><button id=\"#$file\" type=\"button\"  value=\"$file\">$file</button></option>\n";
 										}
@@ -250,10 +305,10 @@ if($method_id == 'dncon2')
 					</div>
 				</div>
 				<div  style="height: 500px; width: 1200px;border: 0px solid black;">
-					<iframe id="dncon2_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
+					<iframe id="deepsf_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
 				</div>
-			     <?php  } ?>
-                </div>
+			<?php  } ?>
+               </div>
             </div> <!-- end of cold-md-6 -->
             
             <div class="update-box">
