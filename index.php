@@ -254,13 +254,14 @@ $(document).ready(function() {
         </div>
         </div>
             
-        <div class="updateBox">
-            <h1>Testing</h1>
-            <h1>Testing</h1>
-            <h1>Testing</h1>
-            <h1>Testing</h1>
-        </div>
+            <div class="update-box">
+                <h1>Box for updates</h1>
             </div>
+            <div class="functions col-md-4">
+                <button class="btn btn-default">Function 1</button>    
+                <button class="btn btn-default">Function 2</button>    
+            </div>
+        </div>
         <div class="row comments">
             <div class=" col-md-5">
                 <h2><?php echo $method_id ?></h2>

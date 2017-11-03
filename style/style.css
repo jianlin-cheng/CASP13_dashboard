@@ -65,3 +65,23 @@ body {
 .visualization-container {
     height: 400px;
 }
+.update-box {
+    float: left;
+    border: 1px black solid;
+    padding: 30px;
+    height: auto;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.functions {
+    border-left: 1px black dotted;
+    margin-top: 10px;
+    height: 100px;
+    display: block;
+}
+
+.functions>.btn {
+    display: block;
+    margin: 10px;
+}
