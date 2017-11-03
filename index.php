@@ -45,7 +45,8 @@ xhr.send(data);
 //write a confirmation to the user
 document.getElementById(updateid).innerHTML="Edits saved!";
 }
-    
+
+/*    
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -60,38 +61,38 @@ document.getElementById(updateid).innerHTML="Edits saved!";
            $(".comment_content").html( "\<\?php echo trim(file_get_contents(\'./MULTICOM_Methods/"+target+"/comments.txt\', true));?>");
             });
     });
-
-//    
-//    $(document).ready(function() {
-//       $("#title-menu").click(function() {
-//           var target = String($(this).val());
-//           $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
-//            $.get("updateMethod.php", {method:target}, function(response){
-//                console.log("This was the response " + response);
-//                $("#viewButton1").html(response);
-//                var count = response.split('>').pop().trim();
-//                console.log(count);
-//                $('#viewButton1').attr("size", count);
-//                });
-//           $(".comment_box").html(target.toUpperCase());
-//           location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
-//            });
-//    });
+*/
+    
+    $(document).ready(function() {
+       $("#title-menu").click(function() {
+           var target = String($(this).val());
+           $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
+            $.get("updateMethod.php", {method:target}, function(response){
+                console.log("This was the response " + response);
+                $("#viewButton1").html(response);
+                var count = response.split('>').pop().trim();
+                console.log(count);
+                $('#viewButton1').attr("size", count);
+                });
+           $(".comment_box").html(target.toUpperCase());
+           location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
+            });
+    });
 //    
 	
-//    $(document).ready(function() {
-//       $("#dncon2_run").click(function() {
-//           var target = String($(this).val());
-//		   var array_tmp = target.split('.');
-//		   var targetname=array_tmp[0]
-//		   //alert(target);
-//		   //alert(targetname);
-//		   //alert("http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname);
-//           document.getElementById('dncon2_iframe').src = "http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname;
-//           document.getElementById('dncon2_iframe').width = "100%";
-//           document.getElementById('dncon2_iframe').height = "100%";
-//            });
-//    });
+    $(document).ready(function() {
+       $("#dncon2_run").click(function() {
+           var target = String($(this).val());
+		   var array_tmp = target.split('.');
+		   var targetname=array_tmp[0]
+		   //alert(target);
+		   //alert(targetname);
+		   //alert("http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname);
+           document.getElementById('dncon2_iframe').src = "http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname;
+           document.getElementById('dncon2_iframe').width = "100%";
+           document.getElementById('dncon2_iframe').height = "100%";
+            });
+    });
 	
 $(document).ready(function() {
     var opt = $("#dncon2_run option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
@@ -162,7 +163,7 @@ $(document).ready(function() {
 							<span class="caret"></span>
 						</button>
 					
-				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1" size=13>
+				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1" size=9>
 				        <?php
 				            if ($handle = opendir("MULTICOM_Methods/$method_id")) {
 									$blacklist = array('.', '..','comments.txt');
