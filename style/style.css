@@ -14,13 +14,12 @@
 }
         
 .method_box {
-    border: 3px dotted skyblue;
     height: auto;
     width: auto;
     max-width: 550px;
+    z-index: 0;
 }
  
-      
 .comment_box {
     border: 1px solid black;
     height: auto;
@@ -61,4 +60,8 @@ body {
     font-size: 20px;
     display: inline;
     padding-left: 10px;
+}
+
+.visualization-container {
+    height: 400px;
 }

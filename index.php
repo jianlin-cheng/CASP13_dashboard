@@ -51,9 +51,7 @@ document.getElementById(updateid).innerHTML="Edits saved!";
            var target = String($(this).val());
            $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
             $.get("updateMethod.php", {method:target}, function(response){
-                console.log("This was the response " + response);
                 $("#viewButton1").html(response);
-                
                 var count = response.split('>').pop().trim();
                 console.log(count);
                 $('#viewButton1').attr("size", count);
@@ -71,6 +69,9 @@ document.getElementById(updateid).innerHTML="Edits saved!";
 //            $.get("updateMethod.php", {method:target}, function(response){
 //                console.log("This was the response " + response);
 //                $("#viewButton1").html(response);
+//                var count = response.split('>').pop().trim();
+//                console.log(count);
+//                $('#viewButton1').attr("size", count);
 //                });
 //           $(".comment_box").html(target.toUpperCase());
 //           location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
@@ -133,8 +134,9 @@ $(document).ready(function() {
         <h2 id="subtitle">Critical Assesment of Techniques for Protein Structure Prediction</h2>
     </div>
         <div class="container">
-        <div class="row">
-            <div class="dropdown col-md-2 text-left">
+        <div class="visualization-container">
+        <div class="col-md-6">
+            <div class="dropdown col-md-3 text-left">
                 <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
                 <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1" size=3>
 							<?php
@@ -160,7 +162,7 @@ $(document).ready(function() {
 							<span class="caret"></span>
 						</button>
 					
-				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1" size=5>
+				    <select class="dropdown-menu dropdown-menu-center" id="viewButton1" multiple="multiple" aria-labelledby="dropdownMenu1" size=13>
 				        <?php
 				            if ($handle = opendir("MULTICOM_Methods/$method_id")) {
 									$blacklist = array('.', '..','comments.txt');
@@ -175,7 +177,6 @@ $(document).ready(function() {
 				    ?>
 						</select>
 					</div>
-            </div>
             <div class="row" id="visualization">
 				<div class="col-md-4 method_box">
 					<script type="text/javascript">
@@ -191,7 +192,6 @@ $(document).ready(function() {
 								$(document).ready(function() {
 									$("#viewButton1").click(function() {
 										var methodName = $("#dropdown-description").text();
-										console.log("This is the method name " + methodName);
 										var target = String($(this).val());
 										target = target.replace(/\n/g, '');
 										if ($("#refinedCheck").prop("checked")) {
@@ -251,31 +251,38 @@ $(document).ready(function() {
 					<iframe id="dncon2_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
 				</div>
 			<?php  } ?>
-			
-			
         </div>
+        </div>
+            
+        <div class="updateBox">
+            <h1>Testing</h1>
+            <h1>Testing</h1>
+            <h1>Testing</h1>
+            <h1>Testing</h1>
+        </div>
+            </div>
         <div class="row comments">
-            <div class="col-md-1">
+            <div class=" col-md-5">
                 <h2><?php echo $method_id ?></h2>
             </div>
         </div>
-            <div class="row comments">
-				<?php if ($method_id == 'multicom'){ ?>
+        <div class="row comments col-md-5">
+            <?php if ($method_id == 'multicom'){ ?>
 					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
 					<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
 					<div id="update2"> - Edit the text and click to save for next time</div>
-				<?php }else if($method_id == 'dncon2'){ ?>
+            <?php }else if($method_id == 'dncon2'){ ?>
 					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
 					<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/dncon2/comments.txt')"/>
 					<div id="update2"> - Edit the text and click to save for next time</div>
-				<?php }else if($method_id == 'confold2'){?>
+            <?php }else if($method_id == 'confold2'){?>
 					<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content">  <?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?> </textarea><br>
 					<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/confold2/comments.txt')"/>
 					<div id="update2"> - Edit the text and click to save for next time</div>
-				<?php }else{?>
+            <?php }else{?>
 					<textarea  rows="4" cols="50">  <?php echo "No comments for this method";?> </textarea><br>
-				<?php }?>
-            </div> 
+            <?php }?>
+        </div> 
     </div>
 </body>
 </html>
