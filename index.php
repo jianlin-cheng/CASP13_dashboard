@@ -655,6 +655,11 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    var opt = $("#view_targets option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
+    $("#view_targets").append(opt);
+});
+
+$(document).ready(function() {
     var opt = $("#viewButton1 option").sort(function (a,b) { return a.value.toUpperCase().localeCompare(b.value.toUpperCase()) });
     $("#viewButton1").append(opt);
 });
