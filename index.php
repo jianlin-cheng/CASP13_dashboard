@@ -21,7 +21,7 @@ if($method_id == 'dncon2')
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Display 3 Methods</title>
+    <title>CASP13 dashboard</title>
     <meta charset="UTF-8">
     
   <!-- Latest compiled and minified CSS -->
