@@ -53,7 +53,7 @@ function saveEdits(formid,updateid, filepath) {
 	data.append("data" , editElem);
 	data.append("filepath" , filepath);
 	var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-	xhr.open( 'post', 'http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard//index.php', true );
+	xhr.open( 'post', 'http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard//index.php', true );
 	xhr.send(data);
 	sleep(5000); // 1000 for 1 seconds
 	// display the updated comments
@@ -173,9 +173,7 @@ function openPopup(updateid) {
 	});
  
 }    
-	
 
-/*    
     $(document).ready(function() {
        $("#title-menu").click(function() {
            var target = String($(this).val());
@@ -184,21 +182,8 @@ function openPopup(updateid) {
                 console.log("This was the response " + response);
                 $("#viewButton1").html(response);
                 });
-           $(".comment_box").html(target.toUpperCase() + " Comment Box");
-           $(".comment_content").html( "\<\?php echo trim(file_get_contents(\'./MULTICOM_Methods/"+target+"/comments.txt\', true));?>");
-            });
-    });
-*/
-    $(document).ready(function() {
-       $("#title-menu").click(function() {
-           var target = String($(this).val());
-           $("#dropdown-description").html(target.toUpperCase() + '<span class="caret"></span>');
-            $.get("updateMethod.php", {method:target}, function(response){
-                console.log("This was the response " + response);
-                $("#viewButton1").html(response);
-                });
-           $(".comment_box").html(target.toUpperCase() + " Comment Box");
-           location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/index.php?method=" + target;
+           $(".comment_box").html(target.toUpperCase() + " Comments");
+           location.href = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/index.php?method=" + target;
             });
     });
 	
@@ -208,15 +193,15 @@ function openPopup(updateid) {
 			var target = String($(this).val());
 			target = target.replace(/\n/g, '');
 			model = 1;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			document.getElementById('view_model_1').href =model_file;
 			document.getElementById('viewButton1').value =target;
 			document.getElementById('pdb_contact_analysis1').value =target+'.1';
 			document.getElementById('viewAlign1').value =aln_file;
 			model = 2;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			document.getElementById('view_model_2').href =model_file;
 			document.getElementById('viewButton2').value =target;
 			document.getElementById('pdb_contact_analysis2').value =target+'.2';
@@ -224,8 +209,8 @@ function openPopup(updateid) {
           
 		  
 			model = 3;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_3').href =model_file;
 			document.getElementById('viewButton3').value =target;
 			document.getElementById('pdb_contact_analysis3').value =target+'.3';
@@ -233,8 +218,8 @@ function openPopup(updateid) {
           
 		  
 			model = 4;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 		    document.getElementById('view_model_4').href =model_file;
 			document.getElementById('viewButton4').value =target;
 			document.getElementById('pdb_contact_analysis4').value =target+'.4';
@@ -243,15 +228,15 @@ function openPopup(updateid) {
 		  
 		  
 			model = 5;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_5').href =model_file;
 			document.getElementById('viewButton5').value =target;
 			document.getElementById('pdb_contact_analysis5').value =target+'.5';
 			document.getElementById('viewAlign5').value =aln_file;
 			
 			//  load the protein sequence
-			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
+			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
 			
 			$.get(fasta_file)
 			.done(function() { 
@@ -268,13 +253,15 @@ function openPopup(updateid) {
 			
           
 			//  load the protein template rank
-			var fasta_rank = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash';
+			var fasta_rank = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash';
 			$.get(fasta_rank)
 			.done(function() { 
 				// exists code 
 				var client = new XMLHttpRequest();
 					client.open('GET', fasta_rank);
+                    
 					jQuery.get(fasta_rank, function(data) {
+                        console.log("TESTINGGG");
 						if(document.getElementById('template_rank'))
 						{
 							document.getElementById('template_rank').value =data;
@@ -288,7 +275,7 @@ function openPopup(updateid) {
 		   
           
 			//load fold image
-			var deepsf_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model1.foldmarker.jpeg';
+			var deepsf_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model1.foldmarker.jpeg';
 			if(document.getElementById('deepsf_fold_image'))
 			{
 				document.getElementById('deepsf_fold_image').src = deepsf_file_map;
@@ -297,7 +284,7 @@ function openPopup(updateid) {
 			
 			//alert('here');
 			//  load the protein predicted contact
-			var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.rr';
+			var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.rr';
 
 			$.get(contact_file)
 			.done(function() { 
@@ -317,7 +304,7 @@ function openPopup(updateid) {
 		
 			
 			//load contact map
-			var contact_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.cmap.png';
+			var contact_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.cmap.png';
 			if(document.getElementById('confold_contact_map'))
 			{
 				document.getElementById('confold_contact_map').src =contact_file_map;
@@ -330,7 +317,7 @@ function openPopup(updateid) {
 		   document.getElementById('multicom_comment_refresh').setAttribute( "onClick", "refreshEdits('edit_comment2','update2','" + "./MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt'+"')");
 		   
 
-		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
+		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
 			$.get(comment_file)
 			.done(function() { 
 				// exists code 
@@ -350,7 +337,7 @@ function openPopup(updateid) {
 			
 			
 			// update the rank list 
-			var dashfile = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash.csv';
+			var dashfile = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash.csv';
 			
 			
 			//alert(dashfile);
@@ -376,6 +363,7 @@ function openPopup(updateid) {
 					$('#template_rank').html(tableContent);
 				});
 			}).fail(function() { 
+                console.log("THIS WAS A FAILURE");
 				// not exists code
 			})
 		  
@@ -383,7 +371,7 @@ function openPopup(updateid) {
 		   // update the deepsf prediction link 
 		   
 		   //deepsf_web_prediction
-		   var deepsf_info = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".info";
+		   var deepsf_info = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".info";
 		   //alert(deepsf_info);
 			$.get(deepsf_info)
 			.done(function() { 
@@ -419,8 +407,8 @@ function openPopup(updateid) {
 		   var targetname=array_tmp[0];
 		   //alert(target);
 		   //alert(targetname);
-		   //alert("http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard//MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname);
-           document.getElementById('dncon2_iframe').src = "http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard//MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname;
+		   //alert("http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard//MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname);
+           document.getElementById('dncon2_iframe').src = "http://iris.rnet.missouri.edu/cgi-bin/casp13_dashboard/coneva/main_v2.0_server.cgi?rr_raw=http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard//MULTICOM_Methods/dncon2/"+target+"&job_id="+targetname;
            document.getElementById('dncon2_iframe').width = "100%";
            document.getElementById('dncon2_iframe').height = "100%";
             });
@@ -440,8 +428,8 @@ function openPopup(updateid) {
 		   var targetname_prefix = targetname_tmp[0]+'_'+targetname_tmp[1]+'_'+targetname_tmp[2];
 		   var targetname_confold = targetname_prefix+'_71'; // in CAMEO, confold group id is 71
 		  
-		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
-		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
+		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
+		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
 			//alert(model_file);
 			//alert(contact_file);
 			
@@ -477,8 +465,8 @@ function openPopup(updateid) {
 		   var targetname_prefix = targetname_tmp[0]+'_'+targetname_tmp[1]+'_'+targetname_tmp[2];
 		   var targetname_confold = targetname_prefix+'_71'; // in CAMEO, confold group id is 71
 		  
-		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
-		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
+		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
+		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
 			//alert(model_file);
 			//alert(contact_file);
 			
@@ -514,8 +502,8 @@ function openPopup(updateid) {
 		   var targetname_prefix = targetname_tmp[0]+'_'+targetname_tmp[1]+'_'+targetname_tmp[2];
 		   var targetname_confold = targetname_prefix+'_71'; // in CAMEO, confold group id is 71
 		  
-		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
-		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
+		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
+		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
 			//alert(model_file);
 			//alert(contact_file);
 			
@@ -551,8 +539,8 @@ function openPopup(updateid) {
 		   var targetname_prefix = targetname_tmp[0]+'_'+targetname_tmp[1]+'_'+targetname_tmp[2];
 		   var targetname_confold = targetname_prefix+'_71'; // in CAMEO, confold group id is 71
 		  
-		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
-		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
+		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
+		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
 			//alert(model_file);
 			//alert(contact_file);
 			
@@ -588,8 +576,8 @@ function openPopup(updateid) {
 		   var targetname_prefix = targetname_tmp[0]+'_'+targetname_tmp[1]+'_'+targetname_tmp[2];
 		   var targetname_confold = targetname_prefix+'_71'; // in CAMEO, confold group id is 71
 		  
-		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
-		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
+		    var model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+targetname+'/'+targetname+'_model'+model+ ".pdb";
+		    var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/confold2/"+targetname_confold+'/'+targetname_confold+'.rr';
 			//alert(model_file);
 			//alert(contact_file);
 			
@@ -701,10 +689,10 @@ $(document).ready(function() {
     </div>
     <div class="post_success">
         <div class="visualization-container">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="dropdown col-md-3 text-left">
                     <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
-                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1" size=10>
+                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="dropdownMenu1">
 							<?php
                     
 							if ($handle = opendir('MULTICOM_Methods/')) {
@@ -745,7 +733,7 @@ $(document).ready(function() {
 								?>
 				    </select>
 				</div>
-                <div class="row" id="visualization">
+                <div id="visualization">
 				    <div class="col-md-4 method_box">
 					   <script type="text/javascript">
 								var model = 1;
@@ -930,41 +918,41 @@ $(document).ready(function() {
 									sorttable.innerSortFunction.apply(myTH, []);	
 								});
 							</script>
-				<div class="col-md-4 method_box">
-						<font size="5"><b>Comment Box</b></font>
-						<?php if ($method_id == 'multicom'){ ?>
-								<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content"></textarea><br>
-								<input type="button" value="Add" style="display:inline" id="multicom_comment_add" onclick="addEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
-								<input type="button" value="Save" style="display:none" id="multicom_comment" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
-								<input type="button" value="Refresh" id="multicom_comment_refresh" onclick="refreshEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/comments.txt')"/>
-								<div id="update2"> - Edit the text and click to save for next time</div>
+                  </div>
+                </div> <!-- end of visualization -->
+                <script>
+                    function saveNewComment(commentId, box, filepath) {
+                        var newComment = document.getElementById(commentId).value;
+                        var method = $("#dropdown-description").text().toLowerCase();;
+                        $.post("updateComments.php", {newComment: newComment, method: method, filepath: filepath}, function(response){
+                            document.getElementById(box).value=response;
+                            document.getElementById('newComment').value = '';
+                        });
+                    }
+                </script>
+				<div class="col-md-10">
+						<font size="5"><b>Comments</b></font>
+						<?php if ($method_id == 'deepsf' || 'multicom' || 'confold2'){ ?>
+				        <textarea  id="comment_box" style="height:200px; width: 90%; overflow-y=scroll; resize: none;" class="comment_content"><?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?></textarea><br>
+                    
+                    <textarea id="newComment" name=newComment style="width:75%; height:30px;" placeholder="New Comment"></textarea>
+                        <input type="button" value="Save" id="<?php echo $method_id ?>_comment" onclick="saveNewComment('newComment','comment_box','./MULTICOM_Methods/<?php echo $method_id ?>/comments.txt')"/>
 						<?php }else if($method_id == 'dncon2'){ ?>
-								<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content"></textarea><br>
-								<input type="button" value="save my comments" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/dncon2/comments.txt')"/>
-								<div id="update2"> - Edit the text and click to save for next time</div>
-						<?php }else if($method_id == 'confold2'){?>
-								<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content"></textarea><br>
-								<input type="button" value="Add" style="display:inline" id="multicom_comment_add" onclick="addEdits('edit_comment2','update2','./MULTICOM_Methods/confold2/comments.txt')"/>
-								<input type="button" value="Save" style="display:none" id="multicom_comment" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/confold2/comments.txt')"/>
-								<input type="button" value="Refresh" id="multicom_comment_refresh" onclick="refreshEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/confold2.txt')"/>
-								<div id="update2"> - Edit the text and click to save for next time</div>
-						<?php }else if($method_id == 'deepsf'){?>
-								<textarea  id="edit_comment2" rows="4" cols="50" class="comment_content"></textarea><br>
-								<input type="button" value="Add" style="display:inline" id="multicom_comment_add" onclick="addEdits('edit_comment2','update2','./MULTICOM_Methods/deepsf/comments.txt')"/>
-								<input type="button" value="Save" style="display:none" id="multicom_comment" onclick="saveEdits('edit_comment2','update2','./MULTICOM_Methods/deepsf/comments.txt')"/>
-								<input type="button" value="Refresh" id="multicom_comment_refresh" onclick="refreshEdits('edit_comment2','update2','./MULTICOM_Methods/multicom/deepsf.txt')"/>
-								<div id="update2"> - Edit the text and click to save for next time</div>
+								<textarea  id="comment_box" rows="4" cols="50" class="comment_content"></textarea><br>
+								<input type="button" value="save my comments" onclick="saveNewComment('newComment','comment_box','./MULTICOM_Methods/<?php $method_id ?>/comments.txt')"/>  
 						<?php }else{?>
 								<textarea  rows="4" cols="50">  <?php echo "";?> </textarea><br>
 						<?php }?>
 				</div> 
-					</div>
+          </div> <!-- end of col-md-6 --> 
 <?php
 if ($method_id == 'multicom' or $method_id == 'deepsf')
 {
 ?>
-						<div class="table col-md-8 method_box">
-							<table id="myTable" class="sortable">
+        <div class="col-md-7 update-box">
+                  <div class="row">
+						<div class="table col-md-3 method_box">
+							<table id="myTable" class="sortable" style="margin-top:13px;">
 								<thead>
 								<tr>
 									<th style="border: 1px solid black;padding: 6px;" class="sorttable_nosort">Model #</th>
@@ -975,38 +963,38 @@ if ($method_id == 'multicom' or $method_id == 'deepsf')
 								</thead>
 								<tbody>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a  id="view_model_1" href="">Top_1</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton1" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewAlign1" value="" onclick="openPopup('viewAlign1');" >View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis1" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_1" href="">Top_1</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton1" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewAlign1" value="" onclick="openPopup('viewAlign1');" >View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis1" value="" >Run</button></td>
 								
 								</tr>
 								<tr>	
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_2" href="">Top_2</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton2" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewAlign2" value="" onclick="openPopup('viewAlign2');" >View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis2" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_2" href="">Top_2</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton2" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewAlign2" value="" onclick="openPopup('viewAlign2');" >View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis2" value="" >Run</button></td>
 							
 								</tr>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_3" href="">Top_3</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton3" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewAlign3" value="" onclick="openPopup('viewAlign3');" >View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis3" value=""  >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class=" view_model" id="view_model_3" href="">Top_3</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton3" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewAlign3" value="" onclick="openPopup('viewAlign3');" >View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis3" value=""  >Run</button></td>
 								
 								</tr>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_4" href="">Top_4</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton4" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewAlign4" value="" onclick="openPopup('viewAlign4');" >View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis4" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_4" href="">Top_4</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton4" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewAlign4" value="" onclick="openPopup('viewAlign4');" >View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis4" value="" >Run</button></td>
 								
 								</tr>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_5" href="">Top_5</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton5" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewAlign5" value="" onclick="openPopup('viewAlign5');" >View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis5" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class=" view_model" id="view_model_5" href="">Top_5</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton5" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewAlign5" value="" onclick="openPopup('viewAlign5');" >View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis5" value="" >Run</button></td>
 								</tr>
 								</tbody>
 							</table>
@@ -1020,8 +1008,10 @@ if ($method_id == 'multicom' or $method_id == 'deepsf')
 if ($method_id == 'confold2')
 {
 ?>
+             <div class="col-md-7 update-box">
+                  <div class="row">
 						<div class="table col-md-8 method_box">
-							<table id="myTable" class="sortable">
+							<table id="myTable" class="sortable" style="margin-top:13px;">
 								<thead>
 								<tr>
 									<th style="border: 1px solid black;padding: 6px;" class="sorttable_nosort">Model #</th>
@@ -1031,39 +1021,40 @@ if ($method_id == 'confold2')
 								</thead>
 								<tbody>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a  id="view_model_1" href="">Top_1</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton1" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis1" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_1" href="">Top_1</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton1" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis1" value="" >Run</button></td>
 								
 								</tr>
 								<tr>	
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_2" href="">Top_2</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton2" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis2" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_2" href="">Top_2</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton2" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis2" value="" >Run</button></td>
 							
 								</tr>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_3" href="">Top_3</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton3" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis3" value=""  >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_3" href="">Top_3</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton3" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis3" value=""  >Run</button></td>
 								
 								</tr>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_4" href="">Top_4</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton4" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis4" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_4" href="">Top_4</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton4" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis4" value="" >Run</button></td>
 								
 								</tr>
 								<tr>
-									<td style="border: 1px solid black;padding: 6px;"><a id="view_model_5" href="">Top_5</a></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="viewButton5" value="">View</button></td>
-									<td style="border: 1px solid black;padding: 6px;"><button type="button" id="pdb_contact_analysis5" value="" >run</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><h4><a class="view_model" id="view_model_5" href="">Top_5</a></h4></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="viewButton5" value="">View</button></td>
+									<td style="border: 1px solid black;padding: 6px;"><button type="button" class="btn btn-table" id="pdb_contact_analysis5" value="" >Run</button></td>
 								</tr>
 								</tbody>
 							</table>
 							
 							
-						</div>	
+						</div>
+
 <?php
 }
 ?>
@@ -1131,38 +1122,45 @@ if ($method_id == 'confold2')
 					<iframe id="deepsf_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
 				</div>
 			<?php  } ?>
-               </div>
-            </div> <!-- end of cold-md-6 -->
-            
-             <div class="update-box">
+               
+              <div class="col-md-5">
 				<h3 > Protein sequence: </h3>
-				<textarea  readonly="readonly" cols="80" rows="4" id="protein_sequence">Not load</textarea><br>
+                  <textarea  readonly="readonly" cols="60" rows="10" id="protein_sequence"></textarea><br>
+
+              </div>
+            </div> <!-- end of row 1 -->
 <?php
 if ($method_id == 'multicom')
 {
 ?>
+            <div class="row" style="margin-left:10px;">
 				<h3 > Template Rank list: </h3>
-				<div style="height:300px;overflow:auto;border-style: solid;border-width: medium;"  > 
+				<div style="height:300px;border-style: solid;border-width: medium; width: fit-content; overflow-y: scroll; overflow-x: auto;"> 
 				
 				<table style="border-collapse: collapse; border: 1px solid black;text-align:center;font-family: arial;" id="template_rank" >
 				</table>
-
+                  </div>
 				</div><br>
 
 <?php
 }else if ($method_id == 'confold2')
 {
 ?>
-				<h3 > Predicted Contacts: </h3>
-				<div style="height:300px;overflow:auto;border-style: solid;border-width: medium;"  > 
+                <div class='row'>
+                    <div class="col-md-4">
+                        <h3> Predicted Contacts: </h3>
+				        <div style="width:fit-content;"> 
+				            <textarea style="height:480px; overflow-y:scroll; border: solid black medium;margin-left:-148px;" readonly rows="150" cols="50" id="confold_contact" ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+				        <h3> Predicted Contact Map: </h3>
+				        <div style="width: 480px; height: auto; float:left;"><a href="./"><img style="width: 480px; height: 480px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="confold_contact_map"/></a></div>
+				    </div>
 				
-				<textarea rows="50" cols="100" id="confold_contact" >
-				</textarea>
-
-				</div><br>
-				
-				<h3 > Predicted Contact Map: </h3>
-				<div style="width: 480px; height: 480px; float:left;"><a href="./"><img style="width: 480px; height: 480px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="confold_contact_map"/></a></div>
+                </div> <!-- end of row -->
+            </div>
+        </div>
 
 <?php
 }else if ($method_id == 'deepsf')
@@ -1176,36 +1174,29 @@ if ($method_id == 'multicom')
 <?php
 }
 ?>
-
-            <!--</div>
-            <div class="functions col-md-4">
-                <button class="btn btn-default">Function 1</button>    
-                <button class="btn btn-default">Function 2</button>    
-            </div>-->
-				
+		</div>		
         </div> <!-- end of visualiation containter -->
         
         
     </div>
-	
 
 <?php
 if ($method_id == 'deepsf')
 {
 ?>
+    <div class="row">
+        <h2 align="center"> Summary of DeepSF prediction: </h2>
+        <input type="hidden" value="" id="deepsf_web_prediction_jobname"/>
+        <input type="hidden" value="" id="deepsf_web_prediction_jobid"/>
+        <div  style="height: 1000px; width: 1600px;border: 0px solid black;margin:0 auto;" align="center">
+            <iframe id="deepsf_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
+        </div>
 				
-				<h2 style="padding-top: 10em;" align="center"> Summary of DeepSF prediction: </h2>
-				<input type="hidden" value="" id="deepsf_web_prediction_jobname"/>
-				<input type="hidden" value="" id="deepsf_web_prediction_jobid"/>
-				<div  style="height: 1000px; width: 1600px;border: 0px solid black;margin:0 auto;" align="center">
-					<iframe id="deepsf_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
-				</div>
-				
-				<h2 style="padding-top: 10em;" align="center"> Contact analysis (need 10 seconds to load): </h2>
-				<div  style="height: 1000px; width: 1200px;border: 0px solid black;margin:0 auto; " >
-					<iframe id="pdb_contact_analysis_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
-				</div>
-				
+        <h2 align="center"> Contact analysis (need 10 seconds to load): </h2>
+        <div  style="height: 1000px; width: 1200px;border: 0px solid black;margin:0 auto; " >
+            <iframe id="pdb_contact_analysis_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
+        </div>
+    </div>			
 <?php
 }
 ?>	
@@ -1213,12 +1204,12 @@ if ($method_id == 'deepsf')
 if ($method_id == 'multicom' or $method_id == 'confold2')
 {
 ?>
-				
-				<h2 style="padding-top: 10em;" align="center"> Contact analysis (need 10 seconds to load): </h2>
-				<div  style="height: 1000px; width: 1200px;border: 0px solid black;margin:0 auto;" >
-					<iframe id="pdb_contact_analysis_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
-				</div>
-				
+    <div class="row">
+       <h2 align="center"> Contact analysis (need 10 seconds to load): </h2>
+        <div  style="height: 1000px; width: 1200px;border: 0px solid black;margin:0 auto;" >
+            <iframe id="pdb_contact_analysis_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
+        </div>
+    </div>	
 <?php
 }
 ?>	
@@ -1236,8 +1227,8 @@ if ($method_id == 'multicom')
 			var target = '2017-11-04_00000042_1_50';
 			target = target.replace(/\n/g, '');
 			model = 1;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			
 			document.getElementById('view_model_1').href =model_file;
 			document.getElementById('viewButton1').value =target;
@@ -1245,8 +1236,8 @@ if ($method_id == 'multicom')
 			document.getElementById('viewAlign1').value =aln_file;
 		  
 			model = 2;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			document.getElementById('view_model_2').href =model_file;
 			document.getElementById('viewButton2').value =target;
 			document.getElementById('pdb_contact_analysis2').value =target+'.2';
@@ -1254,8 +1245,8 @@ if ($method_id == 'multicom')
           
 		  
 			model = 3;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_3').href =model_file;
 			document.getElementById('viewButton3').value =target;
 			document.getElementById('pdb_contact_analysis3').value =target+'.3';
@@ -1263,8 +1254,8 @@ if ($method_id == 'multicom')
           
 		  
 			model = 4;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 		    document.getElementById('view_model_4').href =model_file;
 			document.getElementById('viewButton4').value =target;
 			document.getElementById('pdb_contact_analysis4').value =target+'.4';
@@ -1273,8 +1264,8 @@ if ($method_id == 'multicom')
 		  
 		  
 			model = 5;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_5').href =model_file;
 			document.getElementById('viewButton5').value =target;
 			document.getElementById('pdb_contact_analysis5').value =target+'.5';
@@ -1282,30 +1273,32 @@ if ($method_id == 'multicom')
 			
 			
 			//  load the protein sequence
-			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
+			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
 			var client = new XMLHttpRequest();
 			client.open('GET', fasta_file);
 			jQuery.get(fasta_file, function(data) {
-				document.getElementById('protein_sequence').value =data;
+				document.getElementById('protein_sequence').value = data;
 			});
           
 			//  load the protein template rank
-			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash';
+			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash';
+            console.log(methodName.toLocaleLowerCase());
 			var client = new XMLHttpRequest();
 			client.open('GET', fasta_file);
 			jQuery.get(fasta_file, function(data) {
+                console.log("This was the data ; " + data);
 				document.getElementById('template_rank').value =data;
 			});
 			
-          
-		   //alert(document.getElementById('multicom_comment').onclick);
-		   document.getElementById('multicom_comment').setAttribute( "onClick", "saveEdits('edit_comment2','update2','" + "./MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt'+"')");
-		   document.getElementById('multicom_comment_add').setAttribute( "onClick", "addEdits('edit_comment2','update2','" + "./MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt'+"')");
-		   document.getElementById('multicom_comment_refresh').setAttribute( "onClick", "refreshEdits('edit_comment2','update2','" + "./MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt'+"')");
+//          
+//		   //alert(document.getElementById('multicom_comment').onclick);
+//		   document.getElementById('multicom_comment').setAttribute( "onClick", "saveEdits('edit_comment2','update2','" + "./MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt'+"')");
+//		   document.getElementById('multicom_comment_add').setAttribute( "onClick", "addEdits('edit_comment2','update2','" + "./MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt'+"')");
+//		   document.getElementById('multicom_comment_refresh').setAttribute( "onClick", "refreshEdits('edit_comment2','update2','" + "./MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt'+"')");
+//		   
 		   
 		   
-		   
-		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
+		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
 			var client = new XMLHttpRequest();
 			client.open('GET', comment_file);
 			jQuery.get(comment_file, function(data) {
@@ -1358,8 +1351,8 @@ if ($method_id == 'deepsf')
 			var target = '2017-10-14_00000088_1_71';
 			target = target.replace(/\n/g, '');
 			model = 1;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			
 			document.getElementById('view_model_1').href =model_file;
 			document.getElementById('viewButton1').value =target;
@@ -1367,8 +1360,8 @@ if ($method_id == 'deepsf')
 			document.getElementById('viewAlign1').value =aln_file;
 		  
 			model = 2;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			document.getElementById('view_model_2').href =model_file;
 			document.getElementById('viewButton2').value =target;
 			document.getElementById('pdb_contact_analysis2').value =target+'.2';
@@ -1376,8 +1369,8 @@ if ($method_id == 'deepsf')
           
 		  
 			model = 3;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_3').href =model_file;
 			document.getElementById('viewButton3').value =target;
 			document.getElementById('pdb_contact_analysis3').value =target+'.3';
@@ -1385,8 +1378,8 @@ if ($method_id == 'deepsf')
           
 		  
 			model = 4;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 		    document.getElementById('view_model_4').href =model_file;
 			document.getElementById('viewButton4').value =target;
 			document.getElementById('pdb_contact_analysis4').value =target+'.4';
@@ -1395,8 +1388,8 @@ if ($method_id == 'deepsf')
 		  
 		  
 			model = 5;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/juliaCASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_5').href =model_file;
 			document.getElementById('viewButton5').value =target;
 			document.getElementById('pdb_contact_analysis5').value =target+'.5';
@@ -1404,7 +1397,7 @@ if ($method_id == 'deepsf')
 			
 			
 			//  load the protein sequence
-			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
+			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/juliaCASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
 			var client = new XMLHttpRequest();
 			client.open('GET', fasta_file);
 			jQuery.get(fasta_file, function(data) {
@@ -1416,7 +1409,7 @@ if ($method_id == 'deepsf')
 		   
 		   //deepsf_web_prediction
 		   
-		   var deepsf_info = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".info";
+		   var deepsf_info = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".info";
 		   //alert(deepsf_info);
 			
 			var client = new XMLHttpRequest();
@@ -1434,7 +1427,7 @@ if ($method_id == 'deepsf')
 			   document.getElementById('deepsf_iframe').height = "100%";
 			});
 			//load fold image
-			var contact_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model1.foldmarker.jpeg';
+			var contact_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model1.foldmarker.jpeg';
 			document.getElementById('deepsf_fold_image').src =contact_file_map;
           
 		   //alert(document.getElementById('multicom_comment').onclick);
@@ -1444,7 +1437,7 @@ if ($method_id == 'deepsf')
 		   
 		   
 		   
-		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
+		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
 			var client = new XMLHttpRequest();
 			client.open('GET', comment_file);
 			jQuery.get(comment_file, function(data) {
@@ -1474,8 +1467,8 @@ if ($method_id == 'confold2')
 			var target = '2017-11-04_00000045_2_71';
 			target = target.replace(/\n/g, '');
 			model = 1;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			
 			document.getElementById('view_model_1').href =model_file;
 			document.getElementById('viewButton1').value =target;
@@ -1483,8 +1476,8 @@ if ($method_id == 'confold2')
 			//document.getElementById('viewAlign1').value =aln_file;
 		  
 			model = 2;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 			document.getElementById('view_model_2').href =model_file;
 			document.getElementById('viewButton2').value =target;
 			document.getElementById('pdb_contact_analysis2').value =target+'.2';
@@ -1492,8 +1485,8 @@ if ($method_id == 'confold2')
           
 		  
 			model = 3;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_3').href =model_file;
 			document.getElementById('viewButton3').value =target;
 			document.getElementById('pdb_contact_analysis3').value =target+'.3';
@@ -1501,8 +1494,8 @@ if ($method_id == 'confold2')
           
 		  
 			model = 4;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
 		    document.getElementById('view_model_4').href =model_file;
 			document.getElementById('viewButton4').value =target;
 			document.getElementById('pdb_contact_analysis4').value =target+'.4';
@@ -1511,8 +1504,8 @@ if ($method_id == 'confold2')
 		  
 		  
 			model = 5;
-			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
-			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
+			model_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pdb";
+			aln_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'_model'+model+ ".pir";
             document.getElementById('view_model_5').href =model_file;
 			document.getElementById('viewButton5').value =target;
 			document.getElementById('pdb_contact_analysis5').value =target+'.5';
@@ -1520,7 +1513,7 @@ if ($method_id == 'confold2')
 			
 			
 			//  load the protein sequence
-			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
+			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+ ".fasta";
 			var client = new XMLHttpRequest();
 			client.open('GET', fasta_file);
 			jQuery.get(fasta_file, function(data) {
@@ -1528,7 +1521,7 @@ if ($method_id == 'confold2')
 			});
           
 			//  load the protein template rank
-			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash';
+			var fasta_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/full_length.dash';
 			var client = new XMLHttpRequest();
 			client.open('GET', fasta_file);
 			jQuery.get(fasta_file, function(data) {
@@ -1536,7 +1529,7 @@ if ($method_id == 'confold2')
 			});
 			
 			
-			var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.rr';
+			var contact_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.rr';
 			var client = new XMLHttpRequest();
 			client.open('GET', contact_file);
 			jQuery.get(contact_file, function(data) {
@@ -1545,7 +1538,7 @@ if ($method_id == 'confold2')
 			
 			
 			//load contact map
-			var contact_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.cmap.png';
+			var contact_file_map = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/'+target+'.cmap.png';
 			document.getElementById('confold_contact_map').src =contact_file_map;
           
 		   //alert(document.getElementById('multicom_comment').onclick);
@@ -1555,7 +1548,7 @@ if ($method_id == 'confold2')
 		   
 		   
 		   
-		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
+		    var comment_file = "http://iris.rnet.missouri.edu/casp13_dashboard/julia/CASP13_dashboard/MULTICOM_Methods/" + methodName.toLowerCase() + "/"+target+'/comments.txt';
 			var client = new XMLHttpRequest();
 			client.open('GET', comment_file);
 			jQuery.get(comment_file, function(data) {
