@@ -14,8 +14,8 @@ body {
 }
 
 #dropdown-description {
-    background-color: #598599;
-    border-color: #3f728c;
+    background-color: #DB4F40;
+    border-color: #A33327;
 }
 
 .dropdown-toggle {
@@ -35,10 +35,12 @@ body {
 }
 
 #header {
-    background-image: url("header-background.jpg");
+    background-image: url("CASP13 large.png");
     margin: 0px;
-    padding-top: 50px;
+    padding-top: 5%;
     padding-bottom: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #jsmolAppletM1_appletinfotablediv {
@@ -77,7 +79,7 @@ body {
 .update-box {
     float: left;
     padding: 5px;
-    height: auto;
+    height: 400px;
     margin-top: 5px;
 }
 
@@ -121,4 +123,7 @@ button.btn-table:hover {
     top: 0;
     left: 100%;
     margin-top: -1px;
+}
+.carousel-inner {
+  height: 400px;
 }

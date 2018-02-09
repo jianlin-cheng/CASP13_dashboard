@@ -58,7 +58,7 @@ if($method_id == 'dncon2')
     }
     
     .loader {
-      border: 5px solid #f3f3f3; /* Light grey */
+      border: 5px solid lightgray; /* Light grey */
       border-top: 5px solid #3498db; /* Blue */
       border-radius: 50%;
       width: 20px;
@@ -683,9 +683,9 @@ $(document).ready(function() {
 		
 <body style="overflow-x=hidden">
     <div id="header">
-        <h1 id="title">CASP13</h1>
+<!--        <h1 id="title">CASP13</h1>-->
         <!--<h2 id="subtitle">Critical Assesment of Techniques for Protein Structure Prediction</h2>-->
-        <h2 id="subtitle">Central Web Portal of MULTICOM Predictors</h2>
+<!--        <h2 id="subtitle">Central Web Portal of MULTICOM Predictors</h2>-->
     </div>
     <div class="post_success">
         <div class="visualization-container">
@@ -957,7 +957,16 @@ if ($method_id == 'multicom' or $method_id == 'deepsf')
 {
 ?>
         <div class="col-md-7 update-box">
-                  <div class="row">
+<!--            <div class="row">-->
+               <div id="displayTableCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                  <ol class="carousel-indicators">
+                  <li data-target="#displayTableCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#displayTableCarousel" data-slide-to="1"></li>
+                  <li data-target="#displayTableCarousel" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="item active" style="height:352px;">
+                      <div class="carousel-caption">
 						<div class="table col-md-3 method_box">
 							<table id="myTable" class="sortable" style="margin-top:13px;">
 								<thead>
@@ -1008,6 +1017,8 @@ if ($method_id == 'multicom' or $method_id == 'deepsf')
 							
 							
 						</div>	
+                        </div>
+                    </div> <!-- end of carousel item 1 -->
 <?php
 }
 ?>
@@ -1016,7 +1027,10 @@ if ($method_id == 'confold2')
 {
 ?>
              <div class="col-md-7 update-box">
-                  <div class="row">
+<!--                  <div class="row">-->
+               <div id="displayTableCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                 <div class="carousel-inner">
+                   <div class="item" style="height:352px;">
 						<div class="table col-md-8 method_box">
 							<table id="myTable" class="sortable" style="margin-top:13px;">
 								<thead>
@@ -1058,9 +1072,9 @@ if ($method_id == 'confold2')
 								</tr>
 								</tbody>
 							</table>
+                          </div> 
 							
-							
-						</div>
+						</div> <!-- end of carousel item-->
 
 <?php
 }
@@ -1131,16 +1145,36 @@ if ($method_id == 'confold2')
 				</div>
 			<?php  } ?>
             <?php if ($method_id == 'multicom')
-                { ?>       
-              <div class="col-md-5">
+                { ?>
+              <div class="item" style="height:300px;">
+              <div class="carousel-caption">
+                <div class="col-md-5">
 		        <h3 > Model evaluation: </h3>
 		          <div style="height:200px;border-style: solid;border-width: medium; width: fit-content; overflow-y: scroll; overflow-x: auto;"> 
 				    <table style="border-collapse: collapse; border: 1px solid black;text-align:center;font-family: arial;" id="model_evaluation" ></table>
                   </div>
+                </div>
               </div>
-            <?php } ?>
+              </div> <!-- end of carousel item 2-->
+            <div class="item" style="height:300px;">       
+            <div style="text-align:center;">
+              <h3 > Protein sequence: </h3>
+              <textarea  readonly="readonly" cols="34" rows="13" id="protein_sequence"></textarea>
             </div>
-            </div> <!-- end of row 1 -->
+            </div> <!-- end of carousel item 3 -->
+            <?php } ?>
+<!--            </div>  end of row 1 -->
+                </div> <!-- end of carousel-inner role listbox -->
+                <a class="left carousel-control" href="#displayTableCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#displayTableCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div> <!-- end of carousel -->
+            </div> <!-- end of update-box -->
 <?php
 if ($method_id == 'multicom')
 {
@@ -1153,10 +1187,6 @@ if ($method_id == 'multicom')
 				  </table>
                 </div>
               </div>
-            <div style="display: inline-block; margin-left: 1%">
-            <h3 > Protein sequence: </h3>
-                  <textarea  readonly="readonly" cols="34" rows="13" id="protein_sequence"></textarea>
-            </div>
           </div>
 
 <?php
@@ -1193,9 +1223,6 @@ if ($method_id == 'multicom')
 ?>
 		</div>		
         </div> <!-- end of visualiation containter -->
-        
-        
-    </div>
 
 <?php
 if ($method_id == 'deepsf')
