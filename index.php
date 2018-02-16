@@ -70,6 +70,14 @@ if($method_id == 'dncon2')
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+    
+    .carousel-control.left {
+      background-image: none;
+    }
+
+    .carousel-control.right {
+      background-image: none;
+    }
   </style>
 </head>
 
@@ -100,9 +108,10 @@ function openPopup(updateid) {
 }
   var __target = "";
   function loadTarget(e){
+//    console.log(e);
     document.getElementById("targetMenu").innerHTML = e.attributes.value.textContent + "<span class='caret'></span>";
-    $(".active").hide();
-    $(".active").removeClass("active");
+    $(".activeDropdown").hide();
+    $(".activeDropdown").removeClass("activeDropdown");
     methodName = $("#dropdown-description").text();
     var target = e.value;
     target = target.replace(/\n/g, '');
@@ -641,10 +650,10 @@ $(document).ready(function() {
   
   // Toggle and show the submenus for the targets which are sorted by date
   $('#view_targets .dropdown-submenu a.test').on("click", function(e){
-    $('.active').hide();
-    $('.active').removeClass('active');
+    $('.activeDropdown').hide();
+    $('.activeDropdown').removeClass('activeDropdown');
     $(this).next('ul').toggle();
-    $(this).next('ul').addClass('active');
+    $(this).next('ul').addClass('activeDropdown');
     e.stopPropagation();
     e.preventDefault();
   });
@@ -689,10 +698,11 @@ $(document).ready(function() {
     </div>
     <div class="post_success">
         <div class="visualization-container">
+          <div class="row"> <!-- row for visualization container -->
             <div class="col-md-5">
                 <div class="dropdown col-md-3 text-left">
                     <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
-                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="targetMenu" style="left: 19px; min-width: 111px;">
+                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="targetMenu" style="left: 19px; min-width: 111px; overlfow-y: auto;">
 							<?php
                     
 							if ($handle = opendir('MULTICOM_Methods/')) {
@@ -710,8 +720,9 @@ $(document).ready(function() {
 						
                     </select >
 				</div>
-			<?php if($method_id == 'multicom' or $method_id == 'confold2'  or $method_id == 'deepsf'){ ?> 
-				<div class="dropdown col-md-2 text-left">
+<?php if($method_id == 'multicom' or $method_id == 'confold2'  or $method_id == 'deepsf')
+{ ?> 
+		<div class="dropdown col-md-2 text-left">
 				    <button class="btn btn-default dropdown-toggle" type="button" id="targetMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					
 							Please select the target
@@ -938,7 +949,7 @@ $(document).ready(function() {
 				<div class="col-md-10">
 						<font size="5"><b>Comments</b></font>
 						<?php if ($method_id == 'deepsf' || 'multicom' || 'confold2'){ ?>
-				        <textarea readonly id="comment_box" style="height:200px; width: 100%; overflow-y=scroll; resize: none;" class="comment_content"><?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?></textarea><br>
+				        <textarea readonly id="comment_box" style="height:200px; width: 100%; overflow-y:auto; resize: none;" class="comment_content"><?php echo trim(file_get_contents("./MULTICOM_Methods/$method_id/comments.txt", true));?></textarea><br>
                     <div style="margin-top: 5px; display: block; text-align:center;">
                     <textarea id="newComment" name=newComment style="width:86%; height:30px; resize: none;" placeholder="New Comment"></textarea>
                     
@@ -953,22 +964,22 @@ $(document).ready(function() {
 				</div> 
           </div> <!-- end of col-md-5 --> 
 <?php
+}
+?>
+<?php
 if ($method_id == 'multicom' or $method_id == 'deepsf')
 {
 ?>
         <div class="col-md-7 update-box">
-<!--            <div class="row">-->
                <div id="displayTableCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                   <ol class="carousel-indicators">
                   <li data-target="#displayTableCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#displayTableCarousel" data-slide-to="1"></li>
-                  <li data-target="#displayTableCarousel" data-slide-to="2"></li>
                   </ol>
                   <div class="carousel-inner">
-                    <div class="item active" style="height:352px;">
-                      <div class="carousel-caption">
+                    <div class="item active" style="height:352px; margin-left: 12%;">
 						<div class="table col-md-3 method_box">
-							<table id="myTable" class="sortable" style="margin-top:13px;">
+							<table id="myTable" class="" style="margin-top:13px;">
 								<thead>
 								<tr>
 									<th style="border: 1px solid black;padding: 6px;" class="sorttable_nosort">Model #</th>
@@ -1014,24 +1025,55 @@ if ($method_id == 'multicom' or $method_id == 'deepsf')
 								</tr>
 								</tbody>
 							</table>
-							
-							
-						</div>	
-                        </div>
-                    </div> <!-- end of carousel item 1 -->
+						</div>
+<?php
+if ($method_id == 'multicom' || 'deepsf')
+{
+?>
+                  <div class="col-md-5">
+		            <h3> Model evaluation: </h3>
+		            <div style="height:auto; border-style: solid; border-width: medium; width: fit-content; overflow-y: auto; overflow-x: auto;"> 
+				      <table style="border-collapse: collapse; border: 1px solid black;text-align:center;font-family: arial;" id="model_evaluation" ></table>
+                    </div>
+                  </div>
 <?php
 }
 ?>
+<?php
+if ($method_id == 'deepsf')
+{
+?>
+                  <div class="col-md-5">
+                      		<h3 > Fold alignment: </h3>
+			<div style="width: 800px; height: 400px; float:left;">
+              <a href="./">
+                <img style="width: 800px; height: 400px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="deepsf_fold_image"/>
+              </a>
+            </div>
+                      </div>
+<?php
+}
+?>
+
+             </div> <!-- end of carousel item 1 -->
+<?php
+}
+?>
+                    
 <?php
 if ($method_id == 'confold2')
 {
 ?>
              <div class="col-md-7 update-box">
-<!--                  <div class="row">-->
                <div id="displayTableCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                 <div class="carousel-inner">
-                   <div class="item" style="height:352px;">
-						<div class="table col-md-8 method_box">
+                 <ol class="carousel-indicators">
+                  <li data-target="#displayTableCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#displayTableCarousel" data-slide-to="1"></li>
+                 </ol>
+                 <div class="carousel-inner" style="height:600px; margin-left: 12%;">
+                   <div class="item active" style="height:502px;">
+                     <div class="col-md-3" style="margin-top: 10%;">
+						<div class="table method_box">
 							<table id="myTable" class="sortable" style="margin-top:13px;">
 								<thead>
 								<tr>
@@ -1072,19 +1114,41 @@ if ($method_id == 'confold2')
 								</tr>
 								</tbody>
 							</table>
-                          </div> 
-							
-						</div> <!-- end of carousel item-->
+                        </div>
+                      </div>
+						<div class="col-md-5">
+                        <h3> Predicted Contacts: </h3>
+				        <div style="width:fit-content;"> 
+				            <textarea style="height:480px; overflow-y:auto; border: solid black medium;" readonly rows="150" cols="50" id="confold_contact" ></textarea>
+                        </div>
+                      </div>	
+				    </div> <!-- end of carousel item-->
+                    <div class='carousel item'>
+                      <div style="width:fit-content; margin-left: 10%; ">
+				        <h3 style="text-align: center;"> Predicted Contact Map: </h3>
+				        <div style="width: 480px; height: auto;">
+                          <img style="width: 480px; height: 480px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="confold_contact_map"/>
+                        </div>
+                     </div>
+				  </div> <!-- end of carousel item 2-->
+              </div> <!--  end of carousel-inner role listbox -->
+              <a class="left carousel-control" href="#displayTableCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#displayTableCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+        </div> <!-- end of carousel -->
+    </div> <!-- end of update-box -->
 
 <?php
 }
 ?>
 			
-
-			
-			<?php  } ?>
-			
-			<?php if($method_id == 'dncon2'){ ?>
+<?php if($method_id == 'dncon2')
+{ ?>
 				<div class="col-md-9">
 					<div class="dropdown">
 						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -1113,9 +1177,10 @@ if ($method_id == 'confold2')
 					<iframe id="dncon2_iframe" src=""  width="100%"  height="100%" style="border:none;"></iframe><br/>
 				</div>
 
-			<?php  } ?>
+<?php  } ?>
 			
-			<?php if($method_id == 'deepsf1'){ ?>
+<?php if($method_id == 'deepsf1')
+{ ?>
 				<div class="col-md-1">
 					<div class="dropdown">
 						<button class="btn btn-default dropdown-toggle" type="button" id="targetMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -1143,27 +1208,16 @@ if ($method_id == 'confold2')
 				<div  style="height: 500px; width: 1200px;border: 0px solid black;">
 					<iframe id="deepsf_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
 				</div>
-			<?php  } ?>
-            <?php if ($method_id == 'multicom')
-                { ?>
-              <div class="item" style="height:300px;">
-              <div class="carousel-caption">
-                <div class="col-md-5">
-		        <h3 > Model evaluation: </h3>
-		          <div style="height:200px;border-style: solid;border-width: medium; width: fit-content; overflow-y: scroll; overflow-x: auto;"> 
-				    <table style="border-collapse: collapse; border: 1px solid black;text-align:center;font-family: arial;" id="model_evaluation" ></table>
-                  </div>
-                </div>
-              </div>
-              </div> <!-- end of carousel item 2-->
+<?php  } ?>
+<?php if ($method_id == 'multicom')
+{ ?>
             <div class="item" style="height:300px;">       
             <div style="text-align:center;">
               <h3 > Protein sequence: </h3>
-              <textarea  readonly="readonly" cols="34" rows="13" id="protein_sequence"></textarea>
+              <textarea  readonly="readonly" cols="80" rows="10" id="protein_sequence"></textarea>
             </div>
-            </div> <!-- end of carousel item 3 -->
-            <?php } ?>
-<!--            </div>  end of row 1 -->
+            </div> <!-- end of carousel item 2 -->
+
                 </div> <!-- end of carousel-inner role listbox -->
                 <a class="left carousel-control" href="#displayTableCarousel" data-slide="prev">
                   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -1175,6 +1229,7 @@ if ($method_id == 'confold2')
                 </a>
               </div> <!-- end of carousel -->
             </div> <!-- end of update-box -->
+<?php } ?>
 <?php
 if ($method_id == 'multicom')
 {
@@ -1182,47 +1237,16 @@ if ($method_id == 'multicom')
           <div class="row">
             <div style="display: inline-block; margin-left: -11%;">
 				<h3 > Template Rank list: </h3>
-				<div style="height:300px;border-style: solid;border-width: medium; width: fit-content; overflow-y: scroll; overflow-x: auto;"> 
+				<div style="height:300px;border-style: solid;border-width: medium; width: fit-content; overflow-y: auto; overflow-x: auto;"> 
 				  <table style="border-collapse: collapse; border: 1px solid black;text-align:center;font-family: arial;" id="template_rank" >
 				  </table>
                 </div>
               </div>
-          </div>
-
-<?php
-}else if ($method_id == 'confold2')
-{
-?>
-                <div class='row'>
-                    <div class="col-md-4">
-                        <h3> Predicted Contacts: </h3>
-				        <div style="width:fit-content;"> 
-				            <textarea style="height:480px; overflow-y:scroll; border: solid black medium;margin-left:-148px;" readonly rows="150" cols="50" id="confold_contact" ></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-				        <h3> Predicted Contact Map: </h3>
-				        <div style="width: 480px; height: auto; float:left;"><a href="./"><img style="width: 480px; height: 480px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="confold_contact_map"/></a></div>
-				    </div>
-				
-                </div> <!-- end of row -->
-            </div>
-        </div>
-
-<?php
-}else if ($method_id == 'deepsf')
-{
-?>
-				
-				<h3 > Fold alignment: </h3>
-				<div style="width: 800px; height: 400px; float:left;"><a href="./"><img style="width: 800px; height: 400px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="deepsf_fold_image"/></a></div>
-
-	
+          </div> <!-- end row -->
 <?php
 }
 ?>
-		</div>		
-        </div> <!-- end of visualiation containter -->
+		</div> <!-- end of the row with the visualization container -->		
 
 <?php
 if ($method_id == 'deepsf')
@@ -1240,7 +1264,8 @@ if ($method_id == 'deepsf')
         <div  style="height: 1000px; width: 1200px;border: 0px solid black;margin:0 auto; " >
             <iframe id="pdb_contact_analysis_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
         </div>
-    </div>			
+    </div>	
+    </div> <!-- end of visualiation containter -->
 <?php
 }
 ?>	
@@ -1251,19 +1276,18 @@ if ($method_id == 'multicom' or $method_id == 'confold2')
     <div class="row">
        <h2 align="center"> Contact analysis (need 10 seconds to load): </h2>
         <div  style="height: 1000px; width: 1200px;border: 0px solid black;margin:0 auto;" >
-            <iframe id="pdb_contact_analysis_iframe" src=""  width="100%"  height="10%" ></iframe><br/>					
+            <iframe id="pdb_contact_analysis_iframe" src=""  width="100%"  height="10%" ></iframe><br/>
         </div>
     </div>	
+    
+    </div> <!-- end of visualiation containter -->
+          
 <?php
 }
 ?>	
-
-
 <?php
 if ($method_id == 'multicom')
-{
-	
-?>
+{ ?>
 <script type="text/javascript">
     // this must be in the last, otherwise, the document won't be load
 	function intial_load() {
@@ -1391,7 +1415,7 @@ if ($method_id == 'multicom')
 					//for(var line = 0; line < 2; line++){
 						var line_array = lines[line].split('\t');
 						tableContent += '<tr style="border: 1px solid black;">';
-						for(var ind = 0; ind < line_array.length; ind++){
+						for(var ind = 1; ind < line_array.length; ind++){
 							tableContent += '<td style="border: 1px solid black;padding: 6px;">'+line_array[ind]+'</td>';
 						}
 						tableContent += '</tr>';
@@ -1415,8 +1439,7 @@ if ($method_id == 'multicom')
 
 <?php
 if ($method_id == 'deepsf')
-{
-	
+{	
 ?>
 <script type="text/javascript">
     // this must be in the last, otherwise, the document won't be load
@@ -1531,8 +1554,7 @@ if ($method_id == 'deepsf')
 
 <?php
 if ($method_id == 'confold2')
-{
-	
+{	
 ?>
 <script type="text/javascript">
     // this must be in the last, otherwise, the document won't be load
