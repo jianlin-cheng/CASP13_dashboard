@@ -702,7 +702,7 @@ $(document).ready(function() {
             <div class="col-md-5">
                 <div class="dropdown col-md-3 text-left">
                     <button id="dropdown-description" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php echo strToUpper($method_id) ?><span class="caret"></span></button>
-                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="targetMenu" style="left: 19px; min-width: 111px; overlfow-y: auto;">
+                    <select  class="dropdown-menu" id="title-menu" multiple="multiple" aria-labelledby="targetMenu" style="left: 19px; min-width: 111px;">
 							<?php
                     
 							if ($handle = opendir('MULTICOM_Methods/')) {
@@ -1027,7 +1027,7 @@ if ($method_id == 'multicom' or $method_id == 'deepsf')
 							</table>
 						</div>
 <?php
-if ($method_id == 'multicom' || 'deepsf')
+if ($method_id == 'multicom')
 {
 ?>
                   <div class="col-md-5">
@@ -1036,21 +1036,23 @@ if ($method_id == 'multicom' || 'deepsf')
 				      <table style="border-collapse: collapse; border: 1px solid black;text-align:center;font-family: arial;" id="model_evaluation" ></table>
                     </div>
                   </div>
+                 </div> <!-- end of carousel item 1 if multicom --> 
 <?php
 }
 ?>
 <?php
-if ($method_id == 'deepsf')
+if ($method_id == 'deepsf1')
 {
 ?>
+            </div> <!-- end of carousel item 1 if multicom --> 
+              <div class="item" style="">
                   <div class="col-md-5">
-                      		<h3 > Fold alignment: </h3>
-			<div style="width: 800px; height: 400px; float:left;">
-              <a href="./">
-                <img style="width: 800px; height: 400px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="deepsf_fold_image"/>
-              </a>
-            </div>
+                    <h3 > Fold alignment: </h3>
+			         <div style="width: 800px; height: 400px; float:left;">
+                        <img style="width: 800px; height: 400px; margin: 0 auto;text-align: center;" alt="DeepSF" src="" id="deepsf_fold_image"/>
                       </div>
+                </div>
+              </div> <!-- end of carousel item 2 if deepsf -->
 <?php
 }
 ?>
